@@ -1,0 +1,133 @@
+ 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+       #login{
+        margin-left: 450px;
+        margin-top: 100px;
+        text-align: center;
+        background-color: rgb(101, 106, 128);
+        color: white;
+        size: 50px;
+        width: 450px;
+        display: none;
+
+       }
+
+       #signUp{
+        margin-left: 450px;
+        margin-top: 100px;
+        text-align: center;
+        background-color: rgb(101, 106, 128);
+        color: white;
+        size: 50px;
+        width: 450px;
+        display: none;
+
+       }
+       
+       body{
+        background-color: #851515;
+       }
+
+
+      
+
+
+    </style>
+</head>
+<body>
+
+    <nav id="id10" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#" onclick="app();">Act-Shop</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#" onclick="signUp();"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#" onclick="login();"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </nav>
+
+
+      <div id="signUp" class="container">
+        <h2>Register New Users</h2>
+        <form >
+          <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="number" class="form-control" id="mobile1" placeholder="Enter Mobile Number" name="mobile">
+          </div>
+
+          <div class="form-group">
+            <label for="mobile">Email:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter emailId" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="pwd">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd2" placeholder="ReEnter password" name="pwd">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+          <button type="button" onclick="userSave();" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+
+
+      <div id="login" class="container">
+        <h2> Login User</h2>
+        <form id="form-1">
+          <div class="form-group">
+            <label for="mobile">MobileNo:</label>
+            <input type="number" class="form-control" id="mobile" placeholder="Enter Mobile Number" name="mobile">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+          <button id="loginbtn" type="button" onclick="loginBtn();" class="btn btn-default">Login</button>
+        </form>
+      </div>
+
+
+
+      
+
+    
+
+
+      <script   src="common.js">
+       
+     
+      
+        
+        
+      </script>
+
+</body>
+</html>

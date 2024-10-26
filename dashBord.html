@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> -->
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script >
+        
+    </script>
+        <style>
+            #usName{
+                color: white;
+                text-justify: auto;
+                margin-left: 250px;
+            }
+            #leftdiv{
+              background-color: blueviolet;
+              height: 30%;
+              display: none;
+              border: solid 3px;
+            }
+            #centerdiv{
+              background-color: rgb(255, 255, 255);
+              
+            }
+            #rightdiv{
+              background-color: rgb(0, 218, 29);
+              border: solid 2px;
+              display: none;
+              margin-left: 230px;
+
+            }
+           
+
+
+            #img{
+              
+              padding: 1px;
+              width: 101%;
+              height: 360px;
+              /* change */
+              display: block;
+            }
+            .icon-bar {
+             width:  3px;
+             size: 290px;
+             height: 20px;
+             padding: 1px 1;
+             font-size: 25px;
+             margin-right: 40px;
+             /* background-color: #555; */
+             float: left;
+             /* color: white; */
+            }
+           
+
+            .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  transition: 0.3s;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#bankDetails{
+  margin-top: 20px;
+    margin-left: 240Px;
+    margin-left: 240Px;
+    background-color: #818181;
+  display: none;
+}
+
+#upd_Bnkform{ 
+  margin-top: 20px;
+    margin-left: 240Px;
+    margin-left: 240Px;
+    background-color: #818181;
+    display: none;   
+
+            }
+   #upd_userform{
+    margin-top: 20px;
+    margin-left: 240Px;
+    margin-left: 240Px;
+    background-color: #818181;
+    display: none;   
+   }         
+.col-md-5{
+  width: 61.66666667%;
+}
+#btn{
+    margin-left: 300px;
+   size: 50px;
+    width: auto;
+
+}
+#placeOrder{
+  /* change */
+  display: block;
+  margin-top: 120px;;
+  background-color: yellow;
+  size: 150px;
+  height: 90px;
+  width: 500px;
+}
+#plo{
+  background-color: rgb(15, 15, 15);
+  size: 50px;
+  height: 10px;
+  width: 300px;
+}
+#place-order{
+  /* change */
+  display: block; 
+  margin-top: 5px;
+  background-color: rgb(51, 209, 209);
+  margin-left: 100Px;
+  margin-bottom: 10px;
+   size: 150px;
+  height: 95px;
+  width: 86%; 
+}
+#img1{
+
+  height: 60px;
+  width:120px; 
+  /* margin-left: 20px; */
+ 
+}
+
+#divOrder{
+  display: none;
+  background-color: rgb(36, 36, 56);
+  color: white;
+    height: 330px;
+    width: 70%;
+}
+#card-1{
+  background: #6e5e5e;
+  width: 70%;
+  height: 220px;
+  margin-left: 150px;
+}
+#increaseVip{
+      margin-right: 5px;
+      margin-top: 7px;
+      color: #fffcfc;
+}
+#genDiv{
+  margin-top: 7px;
+  margin-left: 5px;
+ 
+  
+}
+#genDiv2{
+  margin-top: 60px;
+  margin-left: 5px;
+ 
+ 
+}
+#amnt{
+  margin-top: 140px;
+}
+#coms{
+  margin-left: 30px;
+}
+
+#divOrder2{
+  display: none;
+  margin-top: 34px;
+  background-color: rgb(190, 190, 194);
+  color: rgb(0, 0, 0);
+    height: 180px;
+    width: 50%;
+}
+#orderBtn{
+  background-color: yellowgreen;
+  size: 150px;
+  height: 40px;
+  width: 420px;
+}
+#showV{
+  margin-left: 5px;
+}
+
+#products{
+  display: none;
+
+  width: 290px;
+  height: 360px;
+      margin-top: 80px;
+      margin-left:570px;
+      border-style: solid;
+      border-color: rgb(0, 0, 0);
+     
+}
+#prodImg{
+  margin-top: 10px;
+  width: 200px;
+  height: 150px ;
+}
+#proDesc{
+  margin-top: 10px;
+  background-color: #d1b6b6;
+}
+#prodInc{
+  margin-top: 10px;
+}
+#btnSection{
+    margin-top: 3px;
+}
+#subBtn{
+      height: 35px;
+      width: 120px;
+      background-color: rgb(255, 255, 78);
+}
+#cnBtn{
+      height: 35px;
+      width: 120px;
+      
+}
+
+#products1{
+  display: none;
+
+  width: 290px;
+  height: 360px;
+      margin-top: 80px;
+      margin-left:570px;
+      border-style: solid;
+      border-color: rgb(0, 0, 0);
+     
+}
+
+#proDesc1{
+  margin-top: 2px;
+  background-color: #d1b6b6;
+}
+#prodInc1{
+  margin-top: 2px;
+}
+#btnSection1{
+    margin-top: 3px;
+}
+#confBtn{
+    margin-left: -22px;
+      height: 25px;
+      width: 270px;
+      background-color: rgb(255, 255, 78);
+}
+
+
+#load{
+   display: none; 
+  margin-left: 550px;
+  margin-top: 120px;
+}
+
+
+#loader-5 span{
+  display: block;
+  position: absolute;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
+  width: 20px;
+  height: 20px;
+  background-color: #3498db;
+}
+
+#loader-5 span:nth-child(2){
+  animation: moveanimation1 1s ease-in-out infinite;
+}
+
+#loader-5 span:nth-child(3){
+  animation: moveanimation2 1s ease-in-out infinite;
+}
+
+#loader-5 span:nth-child(4){
+  animation: moveanimation3 1s ease-in-out infinite;
+}
+
+@keyframes moveanimation1{
+  0%, 100%{
+    -webkit-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+
+  75%{
+    -webkit-transform: translateX(30px);
+    -ms-transform: translateX(30px);
+    -o-transform: translateX(30px);
+    transform: translateX(30px);
+  }
+}
+
+@keyframes moveanimation2{
+  0%, 100%{
+    -webkit-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    transform: translateY(0px);
+  }
+
+  75%{
+    -webkit-transform: translateY(30px);
+    -ms-transform: translateY(30px);
+    -o-transform: translateY(30px);
+    transform: translateY(30px);
+  }
+}
+
+@keyframes moveanimation3{
+  0%, 100%{
+    -webkit-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+  }
+
+  75%{
+    -webkit-transform: translate(30px, 30px);
+    -ms-transform: translate(30px, 30px);
+    -o-transform: translate(30px, 30px);
+    transform: translate(30px, 30px);
+  }
+}
+ 
+        </style>
+
+</head>
+<body>
+
+    <nav id="id10" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#" onclick="app();">Act-Shop</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a id="main" href="#" onclick="openNav()"><span class="fa fa-home icon-bar"></span> </a></li>
+            
+            <li class="active"><a onclick="home();" >Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><h2 id="usName"></h2></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+             <li><a id="logoutid" href="#" onclick="logOut();"><span class="glyphicon glyphicon-log-in"></span>logout </a></li>
+          </ul>
+        </div>
+      </nav>
+    
+      <div class="container" id="">
+        <img src="sale.jpg" alt="" id="img">
+     </div>
+
+
+                        <div id="mySidenav" class="sidenav">
+                          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                          <a href="#">About</a>
+                          <a href="#">Services</a>
+                          <a href="#">Clients</a>
+                          <a href="#">Contact</a>
+                          <a href="#" onclick="persanalDetails();">personal Details</a>
+                          <a href="#" onclick="bankAccount()">Bank Account</a>
+                          <a href="teamReport.html">Team Report</a>
+                        </div>
+                        
+                       
+
+
+
+           <div class="container">
+                <div class="row">
+                        <div id="leftdiv" class="box text-center col-md-2">
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                            <h1> left div</h1>
+                        </div>
+
+
+                 <!-- center  div        -->
+                        <div id="bankDetails" class="text-center col-md-8">
+                          
+                          <div id="id6" class=" col-md-4 container text-left mt-9" >
+                             
+                                      <h3> Account Nomber</h3>
+                                      <h3> accountHolderName</h3>
+                                      <h3> your Bank name</h3>
+                                      <h3> bankBranch</h3>
+                                      <h3> IFSC Code</h3>
+                                      <h3> accountType</h3>
+                                      <h3> balence</h3>
+                              
+                           </div>
+                           <div id="id6" class=" col-md-5 container text-left mt-9" >
+                            
+                                    <h3 id="acNo">: 33923713191</h3>
+                                    <h3 id="acNane">: Ganesh Tingre</h3>
+                                    <h3 id="bbn">: SBI</h3> 
+                                    <h3 id="bbcn">: Jintur</h3>  
+                                    <h3 id="ifsc">: SBIN0002334</h3>
+                                    <h3 id="type">: Saving</h3>
+                                    <h3 id="bal">: 300.56</h3>
+                           
+                         </div>
+
+
+                        </div>
+
+  <!-- right  div        -->
+   <!-- PersonalDetails -->
+                        <div id="rightdiv" class="text-center col-md-8">
+                          <div id="parsanalDitais" class="text-center:col-md-8">
+                                <h1> Upadate user  <a onclick="uptUser();"> Click</a> </h1>
+                                <h1> Upadate bank Details  <a onclick="uptbank();"> Click</a> </h1>
+                          </div>
+                        </div>
+
+    <!-- updata bank Details -->
+     
+                        <div id="upd_Bnkform" class="text-left col-md-8">
+                           <div id="parsanalDitais" class="text-center:col-md-8">
+                            <form action="/php.html">
+                               <h3> Mobile Number &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; :&nbsp;&nbsp;
+                                           <input id="mobNum" type="text" readonly placeholder="Mobile Number"> </h3>
+                               <h3> Account Number &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;:&nbsp;&nbsp;
+                                           <input id="acNum" type="number" readonly placeholder="account Number"> </h3>
+                               <h3> Account Holder Name&nbsp;:&nbsp;
+                                           <input id="acName" type="text" placeholder="account Name"> </h3>
+                               <h3> Bank Name &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
+                                            <input id="bName" type="text" placeholder="bankName"> </h3>
+                               <h3> Branch Name &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
+                                             <input id="b_branch" type="text" placeholder="Bank Branch"> </h3>
+                               <h3> IFSC Code &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
+                                            <input id="ifsc1" type="text" placeholder="ifsc Code"> </h3>
+                               <h3> Account Type &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
+                                            <input id="acType" type="text" placeholder="Account Type"> </h3>
+                                  <button id="btn" style="align-self:center;" class="text-center" onclick="btnSubmit();" type="button">submit</button>
+
+                            </form>  
+                           </div>
+                        </div>
+
+
+                        <div id="upd_userform" class="text-left col-md-8">
+                          <div id="parsanalDitais" class="text-center:col-md-8">
+                           <form  onsubmit="usersSubmit();">
+                              <h3> Mobile Number   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
+                                          <input id="mobNum1" type="text" readonly placeholder="Mobile Number"> </h3>
+                              <h3> First Name &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;:&nbsp;&nbsp;
+                                          <input id="firstName1" type="text" placeholder="first Name"> </h3>
+                              <h3> Last Name &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:&nbsp;
+                                          <input id="lastName1" type="text" placeholder="last Name"> </h3>
+                              <h3> Email &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
+                                           <input id="email1" type="text" placeholder="email"> </h3>
+                            
+                                 <button id="btn" style="align-self:center;" class="text-center"  type="submit">submit</button>
+
+                           </form>  
+                          </div>
+                       </div>
+
+                    </div>
+
+
+                </div>
+
+
+              
+                <div id="place-order" class="container text-center col-md-12">
+
+                              <div class=" text-center col-md-3">
+                                <div>
+                                    <img id="img1" src="dollar2.jpg" alt="final"  >
+                                  </div>
+                                  <div>
+                                    <a id="odf1" onclick="odf()" style="font-size: 30px ; color: rgb(0, 0, 0);"> Financial </a>
+                                  </div>
+                              </div>
+
+                              <div class=" text-center col-md-3">
+                                <div>
+                                    <img id="img1" src="recharge.webp" alt="final"  >
+                                  </div>
+                                  <div>
+                                    <a id="odf1" onclick="recharge()" style="font-size: 30px ; color: rgb(0, 0, 0);"> Recharge </a>
+                                  </div>
+                              </div>
+
+                              <div class=" text-center col-md-3">
+                                <div>
+                                    <img id="img1" onclick="withdrowal()" src="withdrawal.webp" alt="final"  >
+                                  </div>
+                                  <div>
+                                    <a id="odf1" onclick="withdrowal()" style="font-size: 30px ; color: rgb(0, 0, 0);"> Withdrawal </a>
+                                  </div>
+                              </div>
+
+                              <div class=" text-center col-md-3">
+                                <div>
+                                    <img id="img1" src="invite.webp" alt="final"  >
+                                  </div>
+                                  <div>
+                                    <a id="odf1" onclick="odf()" style="font-size: 30px ; color: rgb(0, 0, 0);"> Invite </a>
+                                  </div>
+                              </div>
+
+              </div> 
+
+              
+
+              <div id="placeOrder" class="container text-center ">
+                  <div>
+                    
+                      <button id="plo" type="button" onclick="OrderMenu();" ><h1>Place an Order</h1></button>
+                  </div>
+              </div>
+              <h1 id="userName"></h1>
+
+          
+
+             <div id="divOrder" class="container text-center">
+                      <div>
+                          <div id="back-icone" class="container text-left"> 
+                            <a onclick="BackBtn();" class="btn btn-info btn-lg">
+                              <span class="glyphicon glyphicon-arrow-left"></span> Back
+                            </a>
+                          </div>
+                          <div class="">
+                            <h1> Place an order</h1>
+                          </div>
+                      </div>
+
+                     <div id="card-1" class="card text-center">
+
+                        <div class="card-header col-md-12">
+
+                            <div class="text-left col-md-4" id="genDiv3">
+                              <div id="genDiv">
+                              <h4 class="" id=" ">General</h4>
+                            </div>
+                            <div>
+                              <h4 class="" id="amnt">Amount : 5,000 </h4>
+                            </div>
+                            </div>
+
+                            <div class="text-center col-md-3" id="genDiv2">
+                              <div class="card-body">
+                                <h2 class="card-title" id="bonus"> 50.50 </h2>
+                                <p class="card-text">Balance</p>
+                              </div>
+                            </div>
+
+
+                            <div class="text-right col-md-4 " id="increaseVip ">
+                              <a class="" id="increaseVip" href="" > <h3>Increase VIP </h3>   </a>
+                            </div>
+                           
+                        </div>
+                       <div class="text-left" id="coms1">
+                          <h4 id="coms"> Commission 2.5 |20 Orders</h4>
+                       </div>
+
+                      </div>               
+                </div>
+
+
+
+
+
+                <div class=" container text-left " id="divOrder2">
+                       <div class="col-md-4">
+                          <div class="row" id="showV">
+                            <h4>YesterDay Income :</h4>
+                          </div>
+                          <div class="row" id="showV">
+                            <h4>Today Income :</h4>
+                          </div>
+                          <div class="row" id="showV">
+                            <h4>Complete Order :</h4>
+                          </div>
+                      </div>
+
+                    <div class="text-right col-md-7">
+                        <div class="row" id="showV">
+                          <h4 id="yesterDayEarn">155.50</h4>
+                        </div>
+                        <div class="row" id="showV">
+                          <h4 id="todayIncome">126.73</h4>
+                        </div>
+                        <div class="row" id="showV">
+                          <h4 id="complOrder"> </h4>
+                        </div>
+                    </div>
+
+                          <div class=" text-center " >
+                            <button type="button" id="orderBtn" onclick="placeOrder();" > click Order</button>
+                          </div>
+
+                </div>
+
+
+                <div id="products" class=" text-center col-md">
+                  <div>
+                            <div id="" class=" text-center col-md-12 ">
+                               <img id="prodImg"  alt="">
+                            </div>
+
+                            <div id="proDesc1" class=" text-center col-md-12 ">
+                              <p id="proDesc">  </p>
+                            </div>
+
+                          <div id="prodInc" class=" text-left col-md-12 ">
+
+                              <div class="text-left col-md-10">
+                                      <p> total Order amount  </p>
+                                      <p> earning </p>
+                              </div>
+
+                                <div class="text-right col-md-2">
+                                      <p id="imgPrice"> 4,850  </p>
+                                    <p id="earnPrice"> 26.39 </p>
+                              </div>
+
+                        </div>
+
+                            <div id="btnSection" class="text-center col-md-12 ">
+
+                                  <div class="text-left col-md-6">
+                                    <button type="button" id="cnBtn" onclick="cnBtn();"> cancel </button>
+                                  </div>
+
+                                    <div class="text-right col-md-6">
+                                      <button type="button" id="subBtn" onclick="subBtn();"> Submit </button>
+                                  </div>
+
+                            </div>
+                  </div>
+
+                </div>
+
+
+                <div id="products1" class=" text-center col-md">
+                  <div>
+                            <div id="" class=" text-center col-md-12 ">
+                               <img id="prodImg" src="https://cdn1.vectorstock.com/i/1000x1000/21/40/shopping-cart-completed-order-icon-vector-24332140.jpg" alt="">
+                            </div>
+
+                            <div id="" class=" text-center col-md-12 ">
+                              <h3 id="proDesc1"> Order Completed  </h3>
+                            </div>
+
+                          <div id="prodInc1" class=" text-left col-md-12 ">
+
+                              <div class="text-left col-md-10">
+                                      <p> total Order amount  </p>
+                                      <p> Completed Order  </p>
+                                      <p> Earning </p>
+                                      <p> My Earning </p>
+                              </div>
+
+                                <div class="text-right col-md-2">
+                                      <p id="imgPrice1"> </p>
+                                      <p id="complOrder1">  </p>
+                                      <p id="earnPrice1"> 26.39 </p>
+                                       <p id="myEarn"> 2.50  </p>
+                              </div>
+
+                        </div>
+
+                            <div id="btnSection1" class="text-center col-md-12 ">
+
+                                  <div class="text-left col-md-12">
+                                    <button type="button" id="confBtn" onclick="confBtn();"> Confirm </button>
+                                  </div>
+
+                            </div>
+                  </div>
+
+                </div>
+
+
+               
+                <div id="load" class="col-md-3 bg">
+                  <div class="loader" id="loader-5">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                
+         
+      <script  src="dsBord.js">
+      
+      </script>
+</body>
+</html>
