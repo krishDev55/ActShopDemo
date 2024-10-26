@@ -1,6 +1,7 @@
 
 // import { sentOTP } from './common.js'; // Import the function from utils.js
 
+let host="https://test-whjl.onrender.com"
 
 
 var firstLastName;
@@ -33,7 +34,7 @@ var refer=window.sessionStorage.getItem("refer");
         var m = now.getMinutes();
         var s = now.getSeconds();
                       if(h==22 && m==5 && s==0 ){
-                            let url="http://localhost:8080/v1/app/RefreshIncome";
+                            let url=`${host}/v1/app/RefreshIncome`;
       
                               const request= new Request(url, {
                                 method: "put"
@@ -62,7 +63,7 @@ var refer=window.sessionStorage.getItem("refer");
 
 
 let logoutid= document.getElementById("logoutid");
-let logOutApi="http://localhost:8080/v1/app/logOut";
+let logOutApi=`${host}/v1/app/logOut`;
 
     let logOut=()=>{
                 fetch(logOutApi)
@@ -81,9 +82,10 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
 
 
 
-   let FindByMobile=`http://localhost:8080/v1/user/getUserByMobile/${mobile}`
-   var firstName="";
-   let getUserFindByMobile=()=>{
+    let FindByMobile= `${host}/v1/user/getUserByMobile/${mobile}`;
+                
+                var firstName="";
+                let getUserFindByMobile=()=>{
                           fetch(FindByMobile)
                                     .then((responce)=>{
                                         userData=responce.json();
@@ -144,7 +146,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
 
     funtionGetByBankDetails=()=>{
        
-        let bankApi=`http://localhost:8080/v1/app/getbankDByMobile/${mobile}`;
+        let bankApi=`${host}/v1/app/getbankDByMobile/${mobile}`;
                 
         fetch(bankApi)
                  .then((responce)=>{
@@ -163,7 +165,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
             
             let bankAccount=()=>{
                 
-                let bankApi=`http://localhost:8080/v1/app/getbankDByMobile/${mobile}`;
+                let bankApi=`${host}/v1/app/getbankDByMobile/${mobile}`;
                 
                 fetch(bankApi)
                 .then((responce)=>{
@@ -335,7 +337,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
 
 
        let btnSubmit=()=>{
-      const saveBankDetails="http://localhost:8080/v1/app/addBankDetails"
+      const saveBankDetails=`${host}/v1/app/addBankDetails`;
        
         let acName= document.getElementById("acName").value;
         let acNum= document.getElementById("acNum").value;
@@ -422,7 +424,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
 
 
        let usersSubmit=()=>{
-                const updataUserApi="http://localhost:8080/v1/user/updateUser";
+                const updataUserApi=`${host}/v1/user/updateUser`;
                 console.log("inside userSubit button");
                     alert("inside method ")
                     let mobNum= document.getElementById("mobNum1").value;
@@ -505,7 +507,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
                                let earnPrice= document.getElementById("earnPrice");
 
 
-                                let api= "http://localhost:8080/v1/app/getProduct";
+                                let api= `${host}/v1/app/getProduct`;
                                 fetch(api)
                                             .then((responce)=>{
                                                 if(responce.ok){
@@ -581,7 +583,7 @@ let logOutApi="http://localhost:8080/v1/app/logOut";
       
       let updateBonusApi1=(mobile)=>{
 
-          let updateBonusApi=`http://localhost:8080/v1/app/updateBonus/${mobile}/${Number(bonus.toFixed(2))}/${Number(todayEarn.toFixed(2))}/${orderCount}`
+          let updateBonusApi=`${host}/v1/app/updateBonus/${mobile}/${Number(bonus.toFixed(2))}/${Number(todayEarn.toFixed(2))}/${orderCount}`
           console.log("funtion method : ", bonus);
 
         const request = new Request(updateBonusApi, {

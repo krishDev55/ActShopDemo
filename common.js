@@ -3,6 +3,7 @@
 
 var otpFlag;
 let count=1;
+  let host="https://test-whjl.onrender.com"
 
 let autoref=()=>{
   var now = new Date();
@@ -10,7 +11,7 @@ let autoref=()=>{
   var m = now.getMinutes();
   var s = now.getSeconds();
                 if(h==22 && m==5 && s==0 ){
-                      let url="http://localhost:8080/v1/app/RefreshIncome";
+                      let url=`${host}/v1/app/RefreshIncome`;
 
                         const request= new Request(url, {
                           method: "put"
@@ -73,7 +74,7 @@ let autoref=()=>{
                   obj.password=password;
 
                   // console.log("Obj print is : "+obj)
-                  let url="http://localhost:8080/v1/app/login";
+                  let url=`${host}/v1/app/login`;
 
                   const request = new Request(url, {
                                   method: "Post",
@@ -149,7 +150,7 @@ let autoref=()=>{
                       let pwd1= document.getElementById("pwd1").value;
 
                      let email= document.getElementById("email").value;
-                    //  let sentOTP="http://localhost:8080/v1/app/SendOtp/"+email;
+                    //  let sentOTP=`${host}/v1/app/SendOtp/`+email;
 
                      let t =await sentOTP(email);
                       let count=1;
@@ -166,7 +167,7 @@ let autoref=()=>{
                      
                       else if (t==msg) {
 
-                         let signUpApi="http://localhost:8080/v1/app/register";
+                         let signUpApi=`${host}/v1/app/register`;
    
                          let request= new Request(signUpApi,{
                                        method: "Post",
@@ -230,7 +231,7 @@ let autoref=()=>{
             window.sentOTP=async (email)=>{
                     let Otp;
                   // let email= document.getElementById("email").value;
-                  let sentOTp="http://localhost:8080/v1/app/SendOtp/"+email;
+                  let sentOTp=`${host}/v1/app/SendOtp/`+email;
 
                  await fetch(sentOTp)
                         .then((response)=>{

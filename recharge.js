@@ -1,5 +1,5 @@
 
-
+let host="https://test-whjl.onrender.com";
 
 
 var mobile =window.sessionStorage.getItem("mobile");
@@ -26,7 +26,7 @@ console.log("amount is : "+amount)
 
         // we use ajax to sent request to server  create Order 
 
-        let url="http://localhost:8080/v1/app/create_order"
+        let url=`${host}/v1/app/create_order`;
         const request = new Request(url, {
             method: "Post",
             
@@ -125,7 +125,7 @@ let amtBtn=(amt=Number.parseInt(amt))=>{
 
 let updateBonusApi1=(mobile)=>{
 
-                    let updateBonusApi=`http://localhost:8080/v1/app/updateBonus/${mobile}/${Number(bonus.toFixed(2))}/${Number(todayEarn.toFixed(2))}/${orderCount}`
+                    let updateBonusApi=`${host}/v1/app/updateBonus/${mobile}/${Number(bonus.toFixed(2))}/${Number(todayEarn.toFixed(2))}/${orderCount}`
                     console.log("funtion method : ", bonus);
           
                   const request = new Request(updateBonusApi, {
