@@ -3,7 +3,8 @@
 
 var otpFlag;
 let count=1;
-  let host="https://test-whjl.onrender.com"
+  // let host="https://test-whjl.onrender.com"
+  let host="http://localhost:8080"
 
 let autoref=()=>{
   var now = new Date();
@@ -96,14 +97,19 @@ let autoref=()=>{
                                     let j=response.json();
                                       j.then((data)=>{
                                     
-                                      if(data.mobile==obj.mobile && data.password==obj.password){
-                                            obj.mobile=data.mobile;
-                                            obj.password=data.password;
-                                            obj.bonus= data.bonus;
-                                            obj.refer=data.refer;
-                                            obj.totayEarn=data.totayEarn;
-                                            obj.yesterdayEarn=data.yesterdayEarn;
-                                            obj.orderCount=data.orderCount;
+                                        console.log(data.token);
+                                        console.log(data);
+                                        console.log(data.user);
+                                        let data1= data.user;
+
+                                      if(data1.mobile==obj.mobile && data1.password==obj.password){
+                                            obj.mobile=data1.mobile;
+                                            obj.password=data1.password;
+                                            obj.bonus= data1.bonus;
+                                            obj.refer=data1.refer;
+                                            obj.totayEarn=data1.totayEarn;
+                                            obj.yesterdayEarn=data1.yesterdayEarn;
+                                            obj.orderCount=data1.orderCount;
                                           
                                             sessionStorage.setItem("mobile",obj.mobile);
                                             sessionStorage.setItem("password",obj.password);
@@ -111,6 +117,8 @@ let autoref=()=>{
                                             sessionStorage.setItem("todayEarn",obj.totayEarn);
                                             sessionStorage.setItem("yesterDay",obj.yesterdayEarn);
                                             sessionStorage.setItem("orderCount",obj.orderCount);
+
+                                            localStorage.setItem("token",data.token);
 
                                             sessionStorage.setItem("refer",obj.refer);
                                            

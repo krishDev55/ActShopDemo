@@ -1,7 +1,8 @@
 
 // import { sentOTP } from './common.js'; // Import the function from utils.js
 
-let host="https://test-whjl.onrender.com"
+// let host="https://test-whjl.onrender.com"
+let host="http://localhost:8080"
 
 
 var firstLastName;
@@ -15,7 +16,10 @@ var todayEarn=Number(Number(window.sessionStorage.getItem("todayEarn")).toFixed(
 var yesterDay=Number(window.sessionStorage.getItem("yesterDay"));
 var orderCount=Number(window.sessionStorage.getItem("orderCount"));
 
+
 var refer=window.sessionStorage.getItem("refer");
+
+let token= window.localStorage.getItem("token");
 
     // console.log("Object print is : "+mobile)
     // console.log("Object print is : "+password)
@@ -63,15 +67,34 @@ var refer=window.sessionStorage.getItem("refer");
 
 
 let logoutid= document.getElementById("logoutid");
-let logOutApi=`${host}/v1/app/logOut`;
+let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
+    
+    
     let logOut=()=>{
-                fetch(logOutApi)
+        
+        console.log(`Bearer ${token}`);
+
+        const request = new Request(logOutApi, {
+            method: "GET",
+            
+            headers: {
+            'Accept' : 'application/json',
+            'Content-type': 'application/json; charset=UTF-8',
+          Authorization : `Bearer ${token}`,
+                     "alg": "HS256",
+                     "typ": "JWT"
+          
+                }  
+            }); 
+
+        fetch(request)
                             .then((responce)=>{
                                 let j= responce.json();
                                 j.then((data)=>{
+
                                     console.log("logOutButtonWorkDone")
-                                    console.log(data.error)
+                                    console.log(data.msg)
                                     location.replace("index.html");
                                 })
                                 .catch((error)=>{
@@ -86,7 +109,19 @@ let logOutApi=`${host}/v1/app/logOut`;
                 
                 var firstName="";
                 let getUserFindByMobile=()=>{
-                          fetch(FindByMobile)
+                          fetch(FindByMobile,{
+                            method: "GET",
+            
+                            headers: {
+                            'Accept'      : 'application/json',
+                            'Content-type': 'application/json; charset=UTF-8',
+                            Authorization : `Bearer ${token}`,
+                                     "alg": "HS256",
+                                     "typ": "JWT"
+                          
+                                }  
+
+                          })
                                     .then((responce)=>{
                                         userData=responce.json();
                                         userData.then((data)=>{
@@ -97,7 +132,7 @@ let logOutApi=`${host}/v1/app/logOut`;
 
                                         })
                                         .catch((error)=>{
-                                            console.error(error)
+                                            
                                         })
                                     })
                                     .catch((error)=>{
@@ -147,8 +182,20 @@ let logOutApi=`${host}/v1/app/logOut`;
     funtionGetByBankDetails=()=>{
        
         let bankApi=`${host}/v1/app/getbankDByMobile/${mobile}`;
+
                 
-        fetch(bankApi)
+        fetch(bankApi,{
+                headers:{
+               
+                    'Accept'      : 'application/json',
+                    'Content-type': 'application/json; charset=UTF-8',
+                    Authorization : `Bearer ${token}`,
+                             "alg": "HS256",
+                             "typ": "JWT"
+                  
+                        
+            }
+        })
                  .then((responce)=>{
                         if(responce.ok){
                      userBankDetails= responce.json();
