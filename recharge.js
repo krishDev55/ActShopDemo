@@ -32,10 +32,7 @@ console.log("amount is : "+amount)
             
             body: JSON.stringify(
               { 
-                "amount": amount
-
-                
-                
+                "amount": amount   
               }
             ),
             headers: {

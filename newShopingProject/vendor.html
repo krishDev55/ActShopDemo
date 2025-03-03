@@ -1,0 +1,382 @@
+ 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="text1.css">
+    <link rel="stylesheet" href="product.css">
+    <link rel="stylesheet" href="PopUp.css">
+    
+    <!-- <script src="dashbord.js" > </script> -->
+  
+  <style>
+
+
+/* Order section--------------------->>>>>> */
+#order_itoms_main{
+    display: none;
+    margin-bottom: 100px;
+    scroll-behavior: auto;
+    font-display: inherit;
+    /* background-color: blueviolet; */
+}
+
+#order_itom_list_head{
+    background-color: rgb(10, 10, 31);
+    color: white;
+}
+.orderRow{
+    margin-top: 5px;
+    margin-bottom: 2Px;
+    background-color: rgb(7, 240, 240);
+    color: rgb(0, 0, 0);
+}
+
+
+.buyBtnCls{
+    margin-top: 2px;
+    margin-right: 1px;
+    width: 50px;
+    height: 30px;
+    text-align: left;
+}
+#order_cancelbtn{
+    margin-left: 60px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    width: 65px;
+    height: 40px;
+}
+#orderStatus{
+
+    margin-left: 50px;
+}
+.order_acpbtn{
+    margin-left: 90px;
+    margin-top: 5px;
+    width: 75px;
+    /* left: 30px; */
+}
+
+.order_shiflbtn{
+    margin-left: 90px;
+    margin-top: 15px;
+}
+
+
+
+/* profile section-----------------------------> */
+
+/* this Style is use to Profile page  */
+
+#prof_main{
+  display: none;
+  font-display: inherit;
+}
+    #prof_main2{
+        background-color:  rgb(158, 133, 132);
+        height: 350px;
+        margin-bottom: 20px;
+        font-display: inherit;
+    }
+   
+    #img_profile{
+        margin-top: 15px;
+      
+    }
+    #img_prof{
+        height: 189px;
+        width: 140px;
+
+    }
+    #my_profile_text{
+        background-color: antiquewhite;
+        height: 60px;
+
+    }
+    #hd_prof_con{
+        color: white;
+        margin-top: 30px;
+    }
+    .hd_prof_con_clss{
+    /* background-color: white; */
+       color: white;
+        margin-top: 30px;
+    }
+    #upBtn{
+        margin-right: 20px;
+        margin-top: 300px;
+    }
+ /* End  Style is use to Profile page*/
+
+   </style>
+</head>
+<body>
+
+    <!-- this is navbar -->
+    <nav id="id10" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#" onclick="app();">Shopping Center</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="#" onclick="" id="titleShop"> text</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-center">
+            <li><a href="#" onclick="register();"><span class="glyphicon glyphicon-user"></span>Name</a></li>
+             </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" onclick="product();"><span class="glyphicon glyphicon-user"></span> Products</a></li>
+              <li><a href="#" onclick="category();"><span class="glyphicon glyphicon-category"></span> Category</a></li> 
+              <li><a href="#" onclick="stock();"><span class="glyphicon glyphicon-category"></span> Stock</a></li> 
+              <li><a href="#" onclick="shipped();"><span class="glyphicon glyphicon-user"></span>Shipped</a></li>
+              <li><a href="#" onclick="orders();"><span class="glyphicon glyphicon-category"></span> Orders</a></li> 
+
+              <li><a href="#" onclick="addProduct();"><span class="glyphicon glyphicon-user"></span>Add Product</a></li>
+              <li><a href="#" onclick="profile();"><span class="glyphicon glyphicon-user"></span>Profile</a></li>
+              <li><a href="#" onclick="logOut();"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+            
+              
+        </ul>
+        </div>
+
+
+      
+            <div id="id11" class="container-fluid text-center">
+                <div id="id12" class=" container-fluid text-center " >
+               <h1 id="id13" >Search Product </h1>
+                <div class="" id="srcField">
+                <input class="text-center" type="text" id="inputText">
+                <button type="button" id="scrButton" >Search </button>
+              </div>
+
+            </div>
+             
+            </div>
+          
+
+      </nav>
+      
+      
+      <div>
+            <H1> Welcome to Vendor page Page</H1>
+        </div>
+
+
+
+
+<!-- Div to Use Product Section Page  -->
+
+
+<div id="productSection" class= "text-center">
+    <div class="container-fluid">
+        <div id="main-box-div" class="col-md-12">
+    </div>
+</div>
+</div>
+
+
+
+
+    <!-- Div to Use order  Section Page  -->
+
+    <div class="text-center container" id="order_itoms_main">
+        <div class="text-center" id="order-itom-Head-main">
+            <h1>Order Details</h1>
+        </div>
+
+        <div class=" container text-center" id="order-itom-head">
+            <div class="container text-center col-md-12" id="order_itom_list_head">
+                <div class="text-center col-md-2">
+                        <h4> Picture </h4>
+                </div>
+                <div class="text-center col-md-2">
+                        <h4> Product Name </h4>
+                </div>
+                <div class="text-center col-md-2">
+                    <h4> OrderId </h4>
+                </div>
+                <div class="text-center col-md-1">
+                    <h4> Quantity </h4>
+                </div>
+                <div class="text-center col-md-1">
+                            <h4> Price </h4>
+                </div>
+                <div class="text-center col-md-1">
+                            <h4> Time </h4>
+                </div>
+                <div class="text-center col-md-3">
+                            <h4> Status </h4>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Div to Use Profile Page  -->
+
+<div id="prof_main" class=" text-center container">
+   
+    <div id="prof_main1" class="col-md-12 text-center">
+             
+<!-- image and profile name colomn -->
+
+        <div id="prof_main2" class="col-md-4 text-center">
+                    <div id="img_profile" class="text-center">
+                        <img src="pqrs.png"  alt="" id="img_prof">
+                        <h3 id="emp_id_value"> EmpId : </h3>
+                    </div>    
+                    <div id="my_profile_text" class="text-center">
+                        <h1 id="my_profile_text1"> </h1>
+                    </div>   
+        </div>
+
+<!-- profile name heading colomn -->
+
+            <div id="prof_main2" class="col-md-2 text-left">
+                <h3 id="hd_prof_con"> Full Name</h3>
+                <h3 id="hd_prof_con"> Email</h3>
+                <h3 id="hd_prof_con"> Phone</h3>
+                <h3 id="hd_prof_con"> Address</h3>
+                <h3 id="hd_prof_con"> PinCode</h3>
+        
+            </div>
+
+     <!-- Update Button Section        -->
+
+            <div id="prof_main2" class="col-md-1 text-left">
+             <button onclick="upBtn()" id="upBtn" type="button"  class="btn btn-primary">Update</button>
+        
+             </div>
+
+  <!-- Actua profile name Value  colomn -->         
+
+            <div id="prof_main2" class="col-md-5 text-left">
+             
+                <h3 class="hd_prof_con_clss" id="emp_full_Name"></h3>
+                <h3 class="hd_prof_con_clss" id="emp_email"></h3>
+                <h3 class="hd_prof_con_clss" id="emp_phone"></h3>
+                <h3 class="hd_prof_con_clss" id="emp_add"> </h3>
+                <h3 class="hd_prof_con_clss" id="emp_pincode"> </h3>
+        
+             </div>
+             
+
+    </div>
+
+</div>
+
+
+
+
+
+         <!-- Add Production Section ...... Function -->
+        
+         <div class="form-popup1 form-container1 text-center" id="myForm1">
+          
+            <h4 id="row"></h4>
+             <h4 id="cartId"></h4>
+             
+            <div class=" text-center col-md-12" id="imgSection">
+                    <div class="" id="imgSec">
+                        <h3> add image</h3>
+                        <input type="file"  id="img" multiple >
+
+                    </div>
+
+                    <div class="col-md-6" id="nameFil">
+                        <div class="col-md-12" id="name_or">
+                            <h5> name of Product</h5>
+                          
+    
+                        </div>
+                        <div class="col-md-12" id="name_or">
+                            <h5> product Type : </h5>
+                         
+                        </div>
+                        <div class="col-md-12" id="name_or">
+                            <h5> Quentity :</h5>
+                        </div>
+                        
+                        <div class="col-md-12" id="name_or">
+                            <h5> rate : </h5>
+                            
+                        </div>
+
+                        <div class="col-md-12" id="name_or">
+                            <h5> product Description : </h5>
+                         
+                        </div>
+
+                    </div>
+
+                    <!-- ------- -->
+
+
+                    <div class="col-md-6 text-left" id="inpFild">
+                        <div class="col-md-12 " id="name_or">
+                          
+                            <input type="text"  id="prodName"  >
+    
+                        </div>
+
+                        <div class="col-md-12" id="name_or">
+                            <input type="text"  id="prodType">
+                        </div>
+                        
+                        <div class="col-md-12" id="name_or">
+                            <input type="text"  id="prodQuantity"  >    
+                        </div>
+                        
+                        <div class="col-md-12" id="name_or">
+                            <input type="text"  id="prodPrice"  >
+                        </div>
+
+
+
+                        <div class="col-md-12" id="name_or">
+                            <input type="text"  id="prodInfo" multiple >
+                        </div>
+
+                    </div>
+                    
+
+            </div>
+
+            
+              
+          
+              <button type="button" onclick="addProd()" class="btn">update</button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+          </div>
+
+
+
+
+
+
+
+          
+
+
+
+<script src="vendor.js" ></script>
+
+</body>
+
+</html>
+        

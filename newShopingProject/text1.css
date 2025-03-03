@@ -1,0 +1,33 @@
+
+
+#id10{
+    background-color: rgb(28, 29, 29);
+    color: white;
+}
+#scrButton{
+    background-color: #ff0000;
+    color: white;
+}
+#srcField{
+    size: 80px;
+    /* margin-top: 70px;
+    margin-left: 410px; */
+    /* background-color: aqua; */
+}
+#id11{
+    margin-top: 10px;
+    background-color: rgb(18, 241, 10);
+    height: 170px;
+    color: rgb(2, 2, 2);
+}
+#id12{
+    margin-top: 35px;
+}
+#id13{
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+#titleShop{
+    size: 20px;
+}

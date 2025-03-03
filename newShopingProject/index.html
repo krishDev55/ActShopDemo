@@ -1,0 +1,278 @@
+ 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="text1.css">
+    <link rel="stylesheet" href="product.css">
+   
+    <style >
+      
+     
+       
+       #login{
+        /* margin-left: 450px; */
+        margin-top: 100px;
+        text-align: center;
+        margin-bottom: 50px;
+        background-color: rgb(101, 106, 128);
+        color: white;
+        size: 50px;
+        width: 350px;
+        display: none;
+
+       }
+
+       #register{
+        /* margin-left: 450px; */
+        margin-top: 100px;
+        margin-bottom: 70px;
+        text-align: center;
+        background-color: rgb(101, 106, 128);
+        color: white;
+        size: 50px;
+        width: 350px;
+        display: none;
+
+       }
+       
+       body{
+        background-color: #d1cece;
+       }
+
+
+   
+
+
+    </style>
+</head>
+<body>
+
+    <nav id="id10" class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#" onclick="app();">Shopping Center</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="#" onclick="" id="titleShop"> text</a></li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a href="#" onclick="login();"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href="#" onclick="register();"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+            <li><a href="#" onclick="product();"><span class="glyphicon glyphicon-user"></span> Product</a></li>
+            <li><a href="#" onclick="category();"><span class="glyphicon glyphicon-category"></span> Category</a></li> 
+        </ul>
+        </div>
+
+
+      
+            <div id="id11" class="container-fluid text-center">
+                <div id="id12" class=" container-fluid text-center " >
+               <h1 id="id13" >Search Product </h1>
+                <div class="" id="srcField">
+                <input class="text-center" type="text" id="inputText">
+                <button type="button" id="scrButton" >Search </button>
+              </div>
+
+            </div>
+             
+            </div>
+          
+
+      </nav>
+
+      
+
+
+      <div id="register" class="container">
+        <h2>Register New Users</h2>
+        <form >
+          <div class="form-group">
+            <label for="mobile">Mobile Number:</label>
+            <input type="number" class="form-control" id="mobile1" placeholder="Enter Mobile Number" name="mobile">
+          </div>
+
+          <div class="form-group">
+            <label for="mobile">Email:</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter emailId" name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd1" placeholder="Enter password" name="pwd">
+          </div>
+          <div class="form-group">
+            <label for="pwd">Password:</label>
+            <input type="password" class="form-control" id="pwd2" placeholder="ReEnter password" name="pwd">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+          <button type="button" onclick="userSave();" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+
+
+      <div id="login" class="container">
+        <h2> Login User</h2>
+        <form id="form-1">
+          <div class="form-group">
+            <label for="mobile">Username:</label>
+            <input type="text" class="form-control" id="username" placeholder="Enter User Id" name="username">
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+          </div>
+          <button id="loginbtn" type="button" onclick="loginBtn();" class="btn btn-default">Login</button>
+        </form>
+      </div>
+
+
+
+
+
+     <!-- product section  -->
+
+     <div id="productSection" class= "text-center">
+          <div class="container-fluid">
+
+              <div id="main-box-div" class="col-md-12">
+
+                    <!-- <div id="box1" class="col-md-4">
+                      <div class="text-center" id="img-Box">
+                        <img id="prod-img" src="pxrs" alt="redsf">
+                      </div>
+
+                      <div class="text-center" id="img-prod-Name">
+                            <h4> <b id="prod-name"> IPHONE  </b></h4>
+                      </div>
+
+                       <div>
+                            <P id="prod-desc">  this product is best </P>
+                            <h3>RS <b id="prod-rate">1234.0</b></h3>
+                        </div>
+
+                      <div id="btn-Cart-buy" class="text-center">
+                       <button class="btn-info" type="button" onclick="addCart(12)"> Add to Cart </button>
+                       <button class="btn-primary" type="button" onclick="buyNow(123)"> Buy Now </button>
+                      </div>
+                    </div> -->
+<!-- 
+                    <div id="box1" class="col-md-4">
+                      <div class="text-center" id="img-Box">
+                        <img id="prod-img" src="pxrs" alt="redsf">
+                      </div>
+                      <div class="text-center" id="img-prod-Name">
+                            <h4> <b id="prod-name"> IPHONE  </b></h4>
+                      </div>
+                       <div>
+                            <P id="prod-desc">  this product is best </P>
+                            <h3>RS <b id="prod-rate">1234.0</b></h3>
+                        </div>
+                      <div id="btn-Cart-buy" class="text-center">
+                       <button class="btn-info" type="button" onclick="addCart(product-id)"> Add to Cart </button>
+                       <button class="btn-primary" type="button" onclick="buyNow(product-id)"> Buy Now </button>
+                      </div>
+                    </div>
+
+                   <div id="box1" class="col-md-4">
+                      <div class="text-center" id="img-Box">
+                        <img id="prod-img" src="pxrs" alt="redsf">
+                      </div>
+                      <div class="text-center" id="img-prod-Name">
+                            <h4> <b id="prod-name"> IPHONE  </b></h4>
+                      </div>
+                       <div>
+                            <P id="prod-desc">  this product is best </P>
+                            <h3>RS <b id="prod-rate">1234.0</b></h3>
+                        </div>
+                      <div id="btn-Cart-buy" class="text-center">
+                       <button class="btn-info" type="button" onclick="addCart(product-id)"> Add to Cart </button>
+                       <button class="btn-primary" type="button" onclick="buyNow(product-id)"> Buy Now </button>
+                      </div>
+                    </div> -->
+
+              </div>
+
+
+              <!-- extra div -->
+
+              <!-- <div id="main-box-div" class="col-md-12">
+
+                <div id="box1" class="col-md-4">
+                  <div class="text-center" id="img-Box">
+                    <img id="prod-img" src="pxrs" alt="redsf">
+                  </div>
+                  <div class="text-center" id="img-prod-Name">
+                        <h4> <b id="prod-name"> IPHONE  </b></h4>
+                  </div>
+                   <div>
+                        <P id="prod-desc">  this product is best </P>
+                        <h3>RS <b id="prod-rate">1234.0</b></h3>
+                    </div>
+                  <div id="btn-Cart-buy" class="text-center">
+                   <button class="btn-info" type="button" onclick="addCart(product-id)"> Add to Cart </button>
+                   <button class="btn-primary" type="button" onclick="buyNow(product-id)"> Buy Now </button>
+                  </div>
+                </div>
+
+                <div id="box1" class="col-md-4">
+                  <div class="text-center" id="img-Box">
+                    <img id="prod-img" src="pxrs" alt="redsf">
+                  </div>
+                  <div class="text-center" id="img-prod-Name">
+                        <h4> <b id="prod-name"> IPHONE  </b></h4>
+                  </div>
+                   <div>
+                        <P id="prod-desc">  this product is best </P>
+                        <h3>RS <b id="prod-rate">1234.0</b></h3>
+                    </div>
+                  <div id="btn-Cart-buy" class="text-center">
+                   <button class="btn-info" type="button" onclick="addCart(product-id)"> Add to Cart </button>
+                   <button class="btn-primary" type="button" onclick="buyNow(product-id)"> Buy Now </button>
+                  </div>
+                </div>
+
+               <div id="box1" class="col-md-4">
+                  <div class="text-center" id="img-Box">
+                    <img id="prod-img" src="pxrs" alt="redsf">
+                  </div>
+                  <div class="text-center" id="img-prod-Name">
+                        <h4> <b id="prod-name"> IPHONE  </b></h4>
+                  </div>
+                   <div>
+                        <P id="prod-desc">  this product is best </P>
+                        <h3>RS <b id="prod-rate">1234.0</b></h3>
+                    </div>
+                  <div id="btn-Cart-buy" class="text-center">
+                   <button class="btn-info" type="button" onclick="addCart(product-id)"> Add to Cart </button>
+                   <button class="btn-primary" type="button" onclick="buyNow(product-id)"> Buy Now </button>
+                  </div>
+                </div>
+
+             </div> -->
+
+          </div>
+
+     </div>
+
+  <script src="index.js">
+   
+  </script>
+</body>
+</html>

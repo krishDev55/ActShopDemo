@@ -1,8 +1,8 @@
 
 // import { sentOTP } from './common.js'; // Import the function from utils.js
 
-// let host="https://test-whjl.onrender.com"
-let host="http://localhost:8080"
+let host="https://test-whjl.onrender.com"
+// let host="http://localhost:8080"
 
 
 var firstLastName;

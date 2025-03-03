@@ -1,0 +1,40 @@
+#box1{
+    background-color: rgb(4, 247, 247);
+    height: 280px;
+    width: 380px;
+    margin-left: 40px;
+    margin-top: 17px;
+   }
+   /* #box2{
+    background-color: rgb(182, 27, 169);
+    height: 280px;
+    width: 380px;
+    margin-left: 40px;
+   } 
+   #box3{
+    background-color: rgb(77, 8, 117);
+    height: 380px;
+    width: 380px;
+    margin-left: 40px;
+   } */
+
+   #img-Box{
+    background-color: rgb(173, 155, 190);
+    height: 110px;
+    width: 100px;
+    margin-top: 6px;
+    margin-left: 120px;
+   }
+
+   #img-prod-Name{
+      margin-top: 1px;
+   }
+   #btn-Cart-buy{
+        /* margin-bottom: 20px;
+        margin-top: 80px; */
+        margin-top: 5px;
+      
+   }
+   #main-box-div{
+    margin-top: 12px;
+   }

@@ -3,8 +3,11 @@
 
 var otpFlag;
 let count=1;
-  // let host="https://test-whjl.onrender.com"
-  let host="http://localhost:8080"
+  let host="https://test-whjl.onrender.com"
+   
+  // https://asagmentdemo-3.onrender.com
+  // https://test-m7aa.onrender.com
+  // let host="http://localhost:8081"
 
 let autoref=()=>{
   var now = new Date();
