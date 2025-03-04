@@ -1,5 +1,6 @@
 
 let host="https://test-whjl.onrender.com";
+// let host="http://localhost:8081";
 
 
 var mobile =window.sessionStorage.getItem("mobile");
@@ -10,13 +11,14 @@ var yesterDay=Number(window.sessionStorage.getItem("yesterDay"));
 var orderCount=Number(window.sessionStorage.getItem("orderCount"));
 
 
+let token= window.localStorage.getItem("token");
 
 let payBtn=()=>{
 
 // let amount=document.getElementById("amount").value;
 let amount =$("#amount_text").val();
 
-console.log("amount is : "+amount)
+console.log("amount is1 : "+amount)
         if(amount==""|| amount==null){
                
                 swal("Oops", "Amount is Required  !!!! ", "error")
@@ -38,6 +40,9 @@ console.log("amount is : "+amount)
             headers: {
               'Accept' : 'application/json',
               'Content-type': 'application/json; charset=UTF-8',
+               Authorization : `Bearer ${token}`,
+              "alg": "HS256",
+              "typ": "JWT"
                   }  
             }); 
 
