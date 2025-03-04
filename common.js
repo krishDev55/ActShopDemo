@@ -141,6 +141,7 @@ let autoref=()=>{
                                 .catch((error)=>{
                                   // console.log(error)
                                   alert("Server is Not REady pleass Try again same time....")
+                                  location.replace("dashBord.html");
                                 })         
                 }
 
