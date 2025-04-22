@@ -4,11 +4,14 @@
 var otpFlag;
 let count=1;
   let host="https://test-whjl.onrender.com"
-   
-  // https://asagmentdemo-3.onrender.com
-  // https://test-m7aa.onrender.com
   // let host="http://localhost:8081"
+  const ACAO="http://127.0.0.1:5500";
 
+  // let userAgent=!navigator.userAgent.includes("Windows");
+   let userAgent=true;
+
+
+   
 let autoref=()=>{
   var now = new Date();
   var h = now.getHours();
@@ -43,9 +46,18 @@ let autoref=()=>{
 
 
     let login=()=>{
-              console.log("login button check")
-              document.getElementById("signUp").style.display="none";
-              document.getElementById("login").style.display="block";
+              if(userAgent){
+                document.getElementById("login").style.display="block";
+                document.getElementById("signUp").style.display="none";
+              }
+              else{
+                swal({
+                  title: "error!",
+                  text: "This App Open in Mobile ONly",
+                  imageUrl: "images/thumbs-up.jpg"
+              });      
+
+              }
           }
 
 
@@ -92,6 +104,7 @@ let autoref=()=>{
                                   headers: {
                                     'Accept' : 'application/json',
                                     'Content-type': 'application/json; charset=UTF-8',
+                                    'Access-Control-Allow-Origin':ACAO,
                                         }  
                                   });            
                         fetch(request)
@@ -105,7 +118,7 @@ let autoref=()=>{
                                         console.log(data.user);
                                         let data1= data.user;
 
-                                      if(data1.mobile==obj.mobile && data1.password==obj.password){
+                                      if(data.varify){
                                             obj.mobile=data1.mobile;
                                             obj.password=data1.password;
                                             obj.bonus= data1.bonus;
@@ -114,16 +127,16 @@ let autoref=()=>{
                                             obj.yesterdayEarn=data1.yesterdayEarn;
                                             obj.orderCount=data1.orderCount;
                                           
-                                            sessionStorage.setItem("mobile",obj.mobile);
-                                            sessionStorage.setItem("password",obj.password);
-                                            sessionStorage.setItem("bonus",obj.bonus);
-                                            sessionStorage.setItem("todayEarn",obj.totayEarn);
-                                            sessionStorage.setItem("yesterDay",obj.yesterdayEarn);
-                                            sessionStorage.setItem("orderCount",obj.orderCount);
+                                            localStorage.setItem("mobile",obj.mobile);
+                                            localStorage.setItem("password",obj.password);
+                                            localStorage.setItem("bonus",obj.bonus);
+                                            localStorage.setItem("todayEarn",obj.totayEarn);
+                                            localStorage.setItem("yesterDay",obj.yesterdayEarn);
+                                            localStorage.setItem("orderCount",obj.orderCount);
 
                                             localStorage.setItem("token",data.token);
 
-                                            sessionStorage.setItem("refer",obj.refer);
+                                            localStorage.setItem("refer",obj.refer);
                                            
 
 
@@ -148,10 +161,19 @@ let autoref=()=>{
 
 
           let signUp=()=>{
-                    console.log("signUp button check")
+                 if(userAgent){
+                   
                     document.getElementById("login").style.display="none";
                     document.getElementById("signUp").style.display="block";
-
+                  }
+                    else{
+                      swal({
+                        title: "error!",
+                        text: "This App Open in Mobile ONly",
+                        imageUrl: "images/thumbs-up.jpg"
+                    });      
+      
+                    }
                   
                 }
 

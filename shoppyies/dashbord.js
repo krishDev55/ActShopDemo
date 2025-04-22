@@ -55,8 +55,119 @@ let hostUrl=`http://localhost:8084/v1`
          });
     
 
+        // this funtion is Imformation funtion 
+     $('#Imfo1289F').hover(function(){
+        $('#imfo9208F').show();
+            // swal({
+            //     title: "Sweet!",
+            //     text: "Here's a custom image.",
+            //     imageUrl: "images/thumbs-up.jpg"
+            //   });
+              var popup = document.getElementById("myPopup");
+              popup.classList.toggle("show");
+          
+        });
+        
+        $('#Imfo1289F').mouseleave(function(){
+            $('#imfo9208F').hide();
+          
+        });
 
-  });
+        
+        // page Tranction page Show 
+        // and  desplay the  traction List
+        $('#tnxImfo2763').click(function(){
+            $('#productSection').hide();
+            $('#tnx_12T83G').show();
+            tnxPage();
+        //   swal({
+        //         title: "Sweet!",
+        //         text: "Here's a custom image.",
+        //         imageUrl: "images/thumbs-up.jpg"
+        //       });      
+        });
+
+        $('#closeModal').click(()=>{
+            $('#tnx_12T83G').hide();  
+            $('#productSection').show();
+        })
+
+        // close popup of trancation ---- to Extra logic  
+
+        // $('#tnx_12T83G').click((event)=>{
+        //     const modal = document.querySelector(".model");
+        //     if(modal.contains(event.target)){
+        //         $('#tnx_12T83G').hide();  
+        //         $('#productSection').show();
+        //     }
+        // })
+
+        
+        // $('#tnx_12T83G').hide();  
+        
+        
+     
+  });  
+
+
+
+  let tnxPage=()=>{
+// -------------------------------------------------------------------------------------
+
+
+let empId=sessionStorage.getItem("empId");
+let token=sessionStorage.getItem(empId);
+console.log(empId)
+           let tnxUrl=`${hostUrl}/RazorPay/getPaymentByUserId/${empId}`;
+  
+
+           const responce= new Request(tnxUrl,{
+               method:"get",
+               headers:{
+                'Accept' : 'application/json',
+                'Content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin':"http://127.0.0.1:5500",
+                Authorization : `Bearer ${token}`,
+                "alg": "HS256",
+                "typ": "JWT"
+            }
+           });
+     const tableBody = document.getElementById("tableBody");
+           fetch(responce) 
+           .then((responce)=>{
+              let  j= responce.json();
+             
+               j.then((data)=>{  
+                var countAmt=0;
+                   data.forEach(r => {
+                    const obj = JSON.parse(r);
+                
+                       let row = document.createElement("tr");
+                    
+                       let d1 = new Date(obj.created_at * 1000).toLocaleString();
+                       row.innerHTML = `
+                       <td>${obj.id}</td>
+                       <td style="color:green; font-weight:bold;">${obj.currency}</td>
+                       <td>${obj.amount/100}</td>
+                       <td>${obj.method}</td>
+                       <td><a href="#">${obj.order_id}</a></td>
+                        <td>${d1}</td>
+                       <td>${obj.status}</td>
+
+                       `;
+                       
+                       tableBody.appendChild(row);
+                     countAmt= countAmt + obj.amount/100;
+                    });
+                    document.getElementById('totalAmt').innerHTML="Total Price : "+ countAmt;
+                    // ---------------------------------------------------------------------------------------------------
+        });
+    })
+
+  }
+
+
+
 
 
 
@@ -296,12 +407,12 @@ let logOut =()=>{
                                                         let btn_Cart_buy_main=document.createElement("div");
                                                                             btn_Cart_buy_main.setAttribute("id","btn-Cart-buy");
                                                                             btn_Cart_buy_main.setAttribute("class","text-center");
-                                                                        //   let btn_info= document.createElement("button") ;
-                                                                        //   btn_info.setAttribute("class","btn-info");
-                                                                        //   btn_info.setAttribute("type","button");
-                                                                        //   btn_info.setAttribute("onclick",`addCart(${element.id})`)
-                                                                        //   btn_info.innerHTML="Add to Cart";
-                                                                        //   btn_Cart_buy_main.appendChild(btn_info);
+                                                                          let btn_info= document.createElement("button") ;
+                                                                          btn_info.setAttribute("class","btn-info");
+                                                                          btn_info.setAttribute("type","button");
+                                                                          btn_info.setAttribute("onclick",`addCart(${element.id})`)
+                                                                          btn_info.innerHTML="Add to Cart";
+                                                                          btn_Cart_buy_main.appendChild(btn_info);
 
                                                                           let btn_primary= document.createElement("button") ;
                                                                           btn_primary.setAttribute("class","getImFo");
@@ -338,8 +449,12 @@ let getImFo=(id)=>{
 }
 
 
-
         let cart =()=>{
+            window.location.href="cartSection/cart.html"
+        }
+
+
+        let cart1 =()=>{
 
                         document.getElementById("cart_itoms_main").style.display="block";
                         document.getElementById("productSection").style.display="none";
@@ -730,6 +845,7 @@ let getImFo=(id)=>{
 
         let incQuent=(row)=>{
 
+
                 let price= document.getElementById(`cart_product_price${row}`).innerText;
                 let price1 =Number.parseInt(price);
 
@@ -742,9 +858,63 @@ let getImFo=(id)=>{
                 qunt.innerHTML=num+1;
                 tPrice.innerHTML=(num+1)*price1;
 
-
+                let xpath=`/html/body/div[3]/div[2]/div[${row+1}]/div[5]/button`;
+                let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+       
+               let m= result.singleNodeValue;
+                $(m).mouseleave(function(){             
+                chackAvaibility(5437,num+1).then(data => {
+                        if(!data){ 
+                            let btn= document.getElementById(`buyButton${row}`);
+                       
+                            btn.style.pointerEvents="none";
+                            btn.style.opacity="0.5"
+                            swal({
+                                title: "Sweet!",
+                                text:  `${num+1} Product is not Available `,
+                                imageUrl: "images/thumbs-up.jpg"
+                                });
+                        }
+                })                        
+          })
+                return (num+1)*price1;
 
         }
+
+
+
+    let chackAvaibility=(id,quentity)=>{
+      
+            let empId=sessionStorage.getItem("empId");
+            let token=sessionStorage.getItem(empId);
+        
+                let availabilityUrl=`${hostUrl}/prod/chackAvaibility/${id}/${quentity}`;
+                console.log("url is :"+availabilityUrl.toString() )
+
+                const requst= new Request(availabilityUrl,{
+                    method:"Get",
+                    headers:{
+                        'Accept' : 'application/json',
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'Access-Control-Allow-Origin':"http://127.0.0.1:5500",
+                        Authorization : `Bearer ${token}`,
+                        "alg": "HS256",
+                        "typ": "JWT"
+                    }
+
+                });
+            
+             return fetch(requst)
+                    .then(response =>{
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+
+                    })
+               } 
+
+           
 
 
 
@@ -754,11 +924,33 @@ let getImFo=(id)=>{
 
                 let qunt= document.getElementById(`cart_product_qunt${row}`);
                 let num =Number.parseInt(qunt.innerText);
+                console.log("count is : "+num)
             let tPrice= document.getElementById(`cart_product_tPrice${row}`);
             let t_price =Number.parseInt(tPrice.innerText);
             
             qunt.innerHTML=num-1;
             tPrice.innerHTML=t_price-price1;
+
+            let xpath=`/html/body/div[3]/div[2]/div[${row+1}]/div[6]/button`;
+            let result = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+           let m= result.singleNodeValue;
+
+            $(m).mouseleave(function(){          
+                console.log("teddttt   ")   
+            chackAvaibility(5437,num).then(data => {
+                console.log("teddttt   " ,data)   
+                    if(data){ 
+                        let btn= document.getElementById(`buyButton${row}`);
+                        btn.style.pointerEvents="auto";
+                        btn.style.opacity="10"
+                        swal({
+                            title: "Sweet!",
+                            text:  `${num+1} Product is Available `,
+                            imageUrl: "images/thumbs-up.jpg"
+                            });
+                    }
+            })                        
+      })
 
             if(num <=1){
                 deleteCartByCartId(cartId,row);
@@ -831,6 +1023,8 @@ let getImFo=(id)=>{
                             let j= responce.json();
                             j.then((data)=>{
                                     console.log("cartId: "+data.cart_id);
+                                    let tPrice=document.getElementById(`cart_product_tPrice${row}`).innerText;
+                                    actPayment(Number.parseInt(tPrice));
                                 genrateOrder(data.prod_image,data.prod_name,data.prod_price,data.cart_id, data.prod_id,row);
                                 
                                 
@@ -891,6 +1085,7 @@ let getImFo=(id)=>{
                                         console.log( "status is : "+data.status);
                                         console.log("status is : "+data.status)
                                         if(data.status=="Prossing"){
+                                            
                                             alert("Order is Genrate... Okk;")
                                             closeForm();
                                             deleteCartByCartId(cartId,row);
@@ -970,7 +1165,7 @@ let getImFo=(id)=>{
                            let country= document.getElementById("country").value;
                           let   city= document.getElementById("city").value;
                           let  postalCode= document.getElementById("postalCode").value;
-                    let url=`${hostUrl}/v1/getAddressById/${id}`
+                    let url=`${hostUrl}/getAddressById/${id}`
 
 
                     const requst= new Request(url,{
@@ -1076,7 +1271,7 @@ let addNewAddress=()=>{
         }
         
 
-            let url =`${hostUrl}/v1/updatEmpAddress/${empId}`
+            let url =`${hostUrl}/updatEmpAddress/${empId}`
 
             
         const requst= new Request(url,{
@@ -1296,6 +1491,163 @@ let addNewAddress=()=>{
 
 
 
+
+        let actPayment=(amount)=>{
+
+            console.log("amount is : "+amount);
+           let url= `${hostUrl}/RazorPay/genrateOrder`;
+
+           let empId=sessionStorage.getItem("empId")
+            let token=sessionStorage.getItem(empId);
+
+           const request = new Request(url, {
+            method: "Post",
+            
+            body: JSON.stringify(
+              { 
+                "amount": amount ,
+                "currency":"INR" ,
+                "userId":empId,
+                "notes": "Shopping"
+              }
+            ),
+            headers: {
+              'Accept' : 'application/json',
+              'Content-type': 'application/json; charset=UTF-8',
+               Authorization : `Bearer ${token}`,
+              "alg": "HS256",
+              "typ": "JWT"
+                  }  
+            }); 
+
+                fetch(request)
+                        .then((response)=>{
+                            console.log("responce is1:  "+response)
+                            let j=response.json();
+                            console.log("responce is2:  "+j)
+                            j.then((data)=>{
+                                console.log("responce is3:  "+data.user)
+                                console.log("responce is3:  "+data.user.email)
+                                console.log("responce is4:  "+data.d)
+                                let m= JSON.parse(data.d);
+                                console.log("responce is5:  "+m.amount);
+                                
+
+                        
+                                if(m.status=='created'){
+
+                                    var options = {
+                                        "key": "rzp_test_HKhIE2kfoLbD8L", // Enter the Key ID generated from the Dashboard
+                                        "amount": m.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                                        "currency": "INR",
+                                        "name": `${data.user.updUser.fristName }  ${data.user.updUser.lastName}`,
+                                        "description": data.notes,
+                                        "contact": data.user.mmobileNo,
+                                        "image": "https://png.pngtree.com/element_our/20200702/ourmid/pngtree-red-shopping-cart-icon-png-free-image_2284820.jpg",
+                                        "order_id": m.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                                       
+                                        "handler": function (data){
+                                            console.log(data.razorpay_payment_id);
+                                            console.log(data.razorpay_order_id);
+                                            console.log(data.razorpay_signature)
+                                            console.log("responce 12 : " +data)
+                                            console.log("payment successful");
+                        
+                                            bonus=bonus+Number.parseInt(amount);
+                                            window.sessionStorage.setItem("bonus",bonus);
+                                            updateBonusApi1(mobile);
+                                            tnxSavecall(data.razorpay_payment_id); 
+                        
+                                           let wa= swal("Good job!", "Peyment successful..!", "success")
+                        
+                                           
+                                           setTimeout(()=>{
+                                                 location.replace("dashBord.html");
+                        
+                                            },8000)
+                        
+                                            },
+                        
+                                            "prefill": {
+                                                "name": `${data.user.updUser.fristName} " - " ${data.user.updUser.lastName}` ,
+                                                "email": data.user.email,
+                                                "contact": data.user.mmobileNo,
+                                            },
+                                            "notes": {
+                                                "address": `${data.user.updUser.currentCity}`
+                                            },
+                                            "theme": {
+                                                    "color": "#3399cc"
+                                                }
+
+
+                                };
+                                var rzp = new Razorpay(options);
+
+                                rzp.on('payment.failed', function (data){
+                                    console.log(data.error.description);
+                                    console.log(data.error.code);
+                                    console.log(data.error.source);
+                                    console.log(data.error.step);
+                                    console.log(data.error.reason);
+                                    console.log(data.error.metadata.order_id);
+                                    console.log(data.error.metadata.payment_id);
+                                   
+                                    swal("Oops", "Oops payment field....", "error")
+                                    
+                        
+                            });
+                         rzp.open();
+                           
+                                }
+                                else{
+
+                                }
+                            });
+                        }) 
+
+
+           
+    } 
+        
+    tnxSavecall=(data)=>{
+                        console.log("amount is : "+data);
+                        let url= `${hostUrl}/user/saveBankTnx`;
+
+                        let empId=sessionStorage.getItem("empId")
+                        let token=sessionStorage.getItem(empId);
+
+                        const request = new Request(url, {
+                            method: "Post",
+                            
+                            body: JSON.stringify(
+                            { 
+                                "pay_id":data
+                            }
+                            ),
+                            headers: {
+                            'Accept' : 'application/json',
+                            'Content-type': 'application/json; charset=UTF-8',
+                                Authorization : `Bearer ${token}`,
+                            "alg": "HS256",
+                            "typ": "JWT"
+                                }  
+                            }); 
+
+                            fetch(request)
+                            .then((response)=>{
+                                   let j= response.json();
+                                   j.then((data)=>{
+                                            console.log(data);
+                                   })
+                            })
+                            .catch((error)=>{
+                                console.log(error)
+                            })
+
+
+
+    }
 
 
     loadImg();

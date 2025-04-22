@@ -1,24 +1,24 @@
 
 // import { sentOTP } from './common.js'; // Import the function from utils.js
 
-let host="https://test-whjl.onrender.com"
-// let host="http://localhost:8080"
+// let host="https://test-whjl.onrender.com"
+let host="http://localhost:8081"
+const ACAO="http://127.0.0.1:5500";
 
 
 var firstLastName;
 var userData;
 let userBankDetails;
 
-var mobile =window.sessionStorage.getItem("mobile");
-var password=window.sessionStorage.getItem("password");
-var bonus=Number(Number(window.sessionStorage.getItem("bonus")).toFixed(2));
-var todayEarn=Number(Number(window.sessionStorage.getItem("todayEarn")).toFixed(2));
-var yesterDay=Number(window.sessionStorage.getItem("yesterDay"));
-var orderCount=Number(window.sessionStorage.getItem("orderCount"));
+var mobile =window.localStorage.getItem("mobile");
+var password=window.localStorage.getItem("password");
+var bonus=Number(Number(window.localStorage.getItem("bonus")).toFixed(2));
+var todayEarn=Number(Number(window.localStorage.getItem("todayEarn")).toFixed(2));
+var yesterDay=Number(window.localStorage.getItem("yesterDay"));
+var orderCount=Number(window.localStorage.getItem("orderCount"));
 
 
-var refer=window.sessionStorage.getItem("refer");
-
+var refer=window.localStorage.getItem("refer");
 let token= window.localStorage.getItem("token");
 
     // console.log("Object print is : "+mobile)
@@ -116,6 +116,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                             'Accept'      : 'application/json',
                             'Content-type': 'application/json; charset=UTF-8',
                             Authorization : `Bearer ${token}`,
+                            'Access-Control-Allow-Origin':ACAO,
                                      "alg": "HS256",
                                      "typ": "JWT"
                           
@@ -144,8 +145,8 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
                 
      function openNav() {
-                document.getElementById("mySidenav").style.width = "250px";
-                document.getElementById("main").style.marginLeft = "250px";
+                document.getElementById("mySidenav").style.width = "200px";
+                document.getElementById("main").style.marginLeft = "200px";
               }
               
       function closeNav() {
@@ -185,15 +186,14 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
                 
         fetch(bankApi,{
-                headers:{
-               
-                    'Accept'      : 'application/json',
-                    'Content-type': 'application/json; charset=UTF-8',
-                    Authorization : `Bearer ${token}`,
-                             "alg": "HS256",
-                             "typ": "JWT"
-                  
-                        
+            method: "Get",
+            headers:{
+                'Accept' : 'application/json',
+                'Content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin':ACAO,
+                Authorization : `Bearer ${token}`,
+                "alg": "HS256",
+                "typ": "JWT"
             }
         })
                  .then((responce)=>{
@@ -212,9 +212,25 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
             
             let bankAccount=()=>{
                 
+                closeNav();
                 let bankApi=`${host}/v1/app/getbankDByMobile/${mobile}`;
                 
-                fetch(bankApi)
+                const request = new Request(bankApi, {
+                    method: "Get",
+                    headers:{
+                        'Accept' : 'application/json',
+                        'Content-type': 'application/json; charset=UTF-8',
+                        'Access-Control-Allow-Origin':ACAO,
+                        Authorization : `Bearer ${token}`,
+                        "alg": "HS256",
+                        "typ": "JWT"
+                    }
+                    
+                        })
+                    ;
+
+
+                fetch(request)
                 .then((responce)=>{
                     
                     if(responce.ok){
@@ -264,10 +280,21 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                             })
                                 }
                                 else{
-                                    alert("please Add the Bank details");
-                                    console.log(responce.statusText)
+                                    let j= responce.text();
+                                    j.then(data=>{
+                                        let m=JSON.parse(data);
+                                        if(m.error=="this user not Add a bank Dtails"){
+                                            swal({
+                                                title: "Sweet!",
+                                                text: "this user not Add a bank Dtails",
+                                                imageUrl: "images/thumbs-up.jpg"
+                                            });      
+
+                                        }
+                                        
+                                   })
                                     console.log(responce.status)
-                                    home();
+                                    // home();
                                 }
                             })
                                     .catch((error)=>{
@@ -320,7 +347,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
             divOrder.style.display="none";
             divOrder2.style.display="none";
 
-            
+            closeNav();
 
             
                         
@@ -409,8 +436,12 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                 }
                                 ),
                                 headers: {
-                                'Accept' : 'application/json',
+                               'Accept' : 'application/json',
                                 'Content-type': 'application/json; charset=UTF-8',
+                                'Access-Control-Allow-Origin':ACAO,
+                                Authorization : `Bearer ${token}`,
+                                "alg": "HS256",
+                                "typ": "JWT"
                                     }  
                                 });            
 
@@ -537,8 +568,14 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
           document.getElementById("yesterDayEarn").innerHTML=yesterDay;
 
 
+          console.log("orderCount : "+orderCount ," todayEarn : "+todayEarn ," amnt: "+amnt)
 
        }
+
+
+
+
+
        let product1;
        let placeOrder=()=>{
                             if(orderCount < 20){
@@ -634,13 +671,31 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
           console.log("funtion method : ", bonus);
 
         const request = new Request(updateBonusApi, {
-            method: "put"
+            method: "put",
+            headers:{
+                'Accept' : 'application/json',
+                'Content-type': 'application/json; charset=UTF-8',
+                'Access-Control-Allow-Origin':ACAO,
+                Authorization : `Bearer ${token}`,
+                "alg": "HS256",
+                "typ": "JWT"
+            }
+            
                 })
             ;
 
                         fetch(request)
                                         .then((responce)=>{
-                                                console.log(responce)
+                                               let j= responce.json();
+                                               j.then(data=>{
+                                                 console.log(data)
+                                                    localStorage.setItem("bonus",data.bonus);
+                                                    localStorage.setItem("todayEarn",data.totayEarn);
+                                                    localStorage.setItem("yesterDay",data.yesterdayEarn);
+                                                    localStorage.setItem("orderCount",data.orderCount);
+
+                                               })
+
                                         })
                                         .catch((error)=>{
                                             console.log(error);

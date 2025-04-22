@@ -13,6 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <!-- for Sweet Alert  -->
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> -->
@@ -24,6 +27,10 @@
         
     </script>
         <style>
+          body{
+            background-image: url("https://static.vecteezy.com/system/resources/thumbnails/031/351/721/small_2x/composition-of-black-friday-shopping-cart-with-gift-boxes-or-bags-on-dark-background-and-copy-space-concept-by-ai-generated-free-photo.jpg");
+          }
+
             #usName{
                 color: white;
                 text-justify: auto;
@@ -39,27 +46,52 @@
               background-color: rgb(255, 255, 255);
               
             }
+           
             #rightdiv{
-              background-color: rgb(0, 218, 29);
+              background-color: rgb(8, 202, 34);
               border: solid 2px;
               display: none;
-              margin-left: 230px;
+              margin-top: 5px;
+              margin-left: 20px;
+              margin-right: 20px;
             }
            
 
 
             #img{
-              margin-left: 5px;
+              margin-left: 15px;
               padding: 1px;
-              width: 100%;
+              width: 92%;
               height: 180px;
               /* change */
               display: block;
+
+              /* background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #0000001a;
+    padding: 1rem;
+    text-align: center;
+    transition: transform .3s ease,box-shadow .3s ease;
+    width: 300px */
+
+
             }
+            #img-:hover {
+    box-shadow: 0 8px 12px #00000026;
+    transform: translateY(-5px)
+
+}
+
+.navbar-inverse{
+  background-color: #ffffff;
+  color: black;
+  background-image: url("https://cdn.pixabay.com/animation/2023/06/26/03/02/03-02-03-917_512.gif");
+}
             .icon-bar {
              width:  3px;
-             size: 290px;
-             height: 20px;
+             size: 190px;
+             height: 10px;
              padding: 1px 1;
              font-size: 25px;
              margin-right: 40px;
@@ -76,7 +108,8 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  /* background-color: #111; */
+  color: rgb(255, 255, 255);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -86,7 +119,7 @@
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: #fffefe;
   transition: 0.3s;
   display: block;
 }
@@ -163,49 +196,38 @@
   width: 100px; */
 }
 #place-order{
-  /* change */
-  display: block; 
+  /* background-color: rgb(53, 95, 95); */
   margin-top: 25px;
-  /* background-color: rgb(51, 209, 209); */
-  /* margin-left: 100Px; */
-  margin-bottom: 10px;
-   /* size: 150px; */
-  /* height: 95px; */
-  width: 86%; 
-  font-size: small;
+  display: flex;
+    flex-wrap: wrap;
+    gap: 1.7rem;
+    justify-content: center
+
 }
+.mVHDj{
+  background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px #0000001a;
+    padding: 1rem;
+    text-align: center;
+    transition: transform .3s ease,box-shadow .3s ease;
+    /* width: 300px */
+}
+.mVHDj:hover{
+  box-shadow: 0 8px 12px #00000026;
+  transform: translateY(-5px)
+}
+
 #odf1{
   font-size: small;
   font-family: center;
-  color: white;
+  color: rgb(10, 9, 9);
   margin-left: 16px;
+   margin-top: 80px;
+  margin-left: 1px; 
+}
 
-}
-#fMgtCp1{
-  width: 90px;
-  background-color: #a3a9ad;
-  margin-left: -31px;
-  
-  
-}
-#fMgtCp2{
-  width: 90px;
-  background-color: #3498db;
-  margin-left: 65px;
-  margin-top: -94px;
-}
-#fMgtCp3{
-  width: 90px;
-  background-color: #9ac5e2;
-  margin-left: 161px;
-  margin-top: -94px;
-}
-#fMgtCp4{
-  width: 90px;
-  background-color: #3d5363;
-  margin-left: 259px;
-  margin-top: -94px;
-}
 #img1{
 
   height: 55px;
@@ -313,6 +335,7 @@
       margin-left:60px;
       border-style: solid;
       border-color: rgb(0, 0, 0);
+      background-color: white;
      
 }
 #prodImg{
@@ -324,8 +347,15 @@
   margin-top: 10px;
   background-color: #d1b6b6;
 }
+#earnPrice_BTM4G{
+  margin-left:150px;
+}
+#imgPrice_BTM4G{
+  margin-left: 80px;
+}
 #prodInc{
   margin-top: 10px;
+  margin-left: 20px;
 }
 #btnSection{
     margin-top: 3px;
@@ -343,40 +373,43 @@
 
 #products1{
   display: none;
-
+  margin-bottom: 40px;
   width: 290px;
   height: 360px;
       margin-top: 80px;
       margin-left:50px;
       border-style: solid;
       border-color: rgb(0, 0, 0);
+      background-color: white;
      
-}
-#prodInTd1{
-  /* background-color: #818181; */
-  width: 160px;
-}
-#prodInTd2{
-  /* background-color: #af7a7a; */
-  /* width: 130px; */
-  margin-left: 110px;
-  margin-top: -90px;
-  margin-bottom: 20px;
-  margin-right: 30px;
-  
 }
 
 #proDesc1{
   margin-top: 2px;
   background-color: #d1b6b6;
 }
+#imgPrice1{
+  margin-left: 95px;
+}
+#complOrder1{
+  margin-left: 110px;
+}
+#earnPrice1{
+  margin-left: 165px;
+}
+#myEarn{
+  margin-left: 147px;
+}
 #prodInc1{
   margin-top: 2px;
+  margin-left: 10px;
+ 
 }
 #btnSection1{
     margin-top: 3px;
 }
 #confBtn{
+  margin-top: 10px;
     margin-left: -22px;
       height: 25px;
       width: 270px;
@@ -594,7 +627,7 @@ color: white;
                                <h3> Mobile Number &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp; :&nbsp;&nbsp;
                                            <input id="mobNum" type="text" readonly placeholder="Mobile Number"> </h3>
                                <h3> Account Number &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;:&nbsp;&nbsp;
-                                           <input id="acNum" type="number" readonly placeholder="account Number"> </h3>
+                                           <input id="acNum" type="number" placeholder="account Number"> </h3>
                                <h3> Account Holder Name&nbsp;:&nbsp;
                                            <input id="acName" type="text" placeholder="account Name"> </h3>
                                <h3> Bank Name &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; :&nbsp;&nbsp;
@@ -639,40 +672,36 @@ color: white;
               
                 <div id="place-order" class="container text-left">
 
-                              <div class=" text-left" id="fMgtCp1">
-                                <div>
+                              <div class=" text-left mVHDj " id="fMgtCp1">
+                               
+                                <a id="odf1" onclick="odf()" >
                                     <img id="img1" src="dollar2.jpg" alt="final"  >
-                                  </div>
-                                  <div>
-                                    <a id="odf1" onclick="odf()" > Financial </a>
-                                  </div>
+                                 <br>       
+                                     Financial </a>     
                               </div>
 
-                              <div class=" text-left" id="fMgtCp2">
-                                <div>
+                              <div class=" text-left mVHDj" id="fMgtCp2">
+                                <a id="odf1" onclick="recharge()" >
                                     <img id="img1" src="recharge.webp" alt="final"  >
-                                  </div>
-                                  <div>
-                                    <a id="odf1" onclick="recharge()" > Recharge </a>
-                                  </div>
+                                 <br>
+                                    Recharge </a>
+                                
                               </div>
 
-                              <div class=" text-left" id="fMgtCp3">
-                                <div>
+                              <div class=" text-left mVHDj" id="fMgtCp3">
+                                <a id="odf1" onclick="withdrowal()" >
                                     <img id="img1" onclick="withdrowal()" src="withdrawal.webp" alt="final"  >
-                                  </div>
-                                  <div>
-                                    <a id="odf1" onclick="withdrowal()" > Withdrawal </a>
-                                  </div>
+                                   <br>
+                                    Withdrawal </a>
+                               
                               </div>
 
-                              <div class=" text-left" id="fMgtCp4">
-                                <div>
+                              <div class=" text-left mVHDj" id="fMgtCp4">
+                                <a id="odf1" onclick="odf()" >
                                     <img id="img1" src="invite.webp" alt="final"  >
-                                  </div>
-                                  <div>
-                                    <a id="odf1" onclick="odf()" > Invite </a>
-                                  </div>
+                                  <br>
+                                   Invite </a>
+                                
                               </div>
 
               </div> 
@@ -723,7 +752,7 @@ color: white;
 
 
                             <div class="text-right " id="increaseVip">
-                              <a class="" id="increaseVip" href="" > <h6>Increase </h6>   </a>
+                              <a class="" id="increaseVip" href="/recharge.html" > <h6>Increase </h6>   </a>
                             </div>
                            
                         </div>
@@ -780,19 +809,12 @@ color: white;
                               <p id="proDesc">  </p>
                             </div>
 
-                          <div id="prodInc" class=" text-left col-md-12 ">
+                          <div class="text-left" id="prodInc">
 
-                              <div class="text-left col-md-10">
-                                      <p> total Order amount  </p>
-                                      <p> earning </p>
-                              </div>
-
-                                <div class="text-left col-md-2">
-                                      <p id="imgPrice"> 4,850  </p>
-                                    <p id="earnPrice"> 26.39 </p>
-                              </div>
-
-                        </div>
+                             
+                                      <p> total Order amount  <b id="imgPrice_BTM4G"> 4,850  </b> </p>
+                                       <p> earning <b id="earnPrice_BTM4G"> 26.39 </b> </p>
+                               </div>
 
                             <div id="btnSection" class="text-center col-md-12 ">
 
@@ -820,22 +842,11 @@ color: white;
                               <h3 id="proDesc1"> Order Completed  </h3>
                             </div>
 
-                          <div id="prodInc1" class=" text-left">
-
-                              <div class="text-left " id="prodInTd1">
-                                      <p> total Order amount  </p>
-                                      <p> Completed Order  </p>
-                                      <p> Earning </p>
-                                      <p> My Earning </p>
-                              </div>
-
-                                <div class="text-right " id="prodInTd2">
-                                      <p id="imgPrice1"> </p>
-                                      <p id="complOrder1">  </p>
-                                      <p id="earnPrice1"> 26.39 </p>
-                                       <p id="myEarn"> 2.50  </p>
-                              </div>
-
+                          <div id="prodInc1" class="text-left">
+                                      <p> total Order amount   <b id="imgPrice1"> 30,000 </b> </p>
+                                      <p> Completed Order  <b id="complOrder1"> 2/30  </b> </p>
+                                      <p> Earning      <b id="earnPrice1"> 26.39 </b></p>
+                                      <p> My Earning  <b id="myEarn"> 2.50  </b></p>
                         </div>
 
                             <div id="btnSection1" class="text-center col-md-12 ">

@@ -1,14 +1,15 @@
 
 let host="https://test-whjl.onrender.com";
 // let host="http://localhost:8081";
+const ACAO="http://127.0.0.1:5500";
 
 
-var mobile =window.sessionStorage.getItem("mobile");
-var password=window.sessionStorage.getItem("password");
-var bonus=Number(Number(window.sessionStorage.getItem("bonus")).toFixed(2));
-var todayEarn=Number(Number(window.sessionStorage.getItem("todayEarn")).toFixed(2));
-var yesterDay=Number(window.sessionStorage.getItem("yesterDay"));
-var orderCount=Number(window.sessionStorage.getItem("orderCount"));
+var mobile =window.localStorage.getItem("mobile");
+var password=window.localStorage.getItem("password");
+var bonus=Number(Number(window.localStorage.getItem("bonus")).toFixed(2));
+var todayEarn=Number(Number(window.localStorage.getItem("todayEarn")).toFixed(2));
+var yesterDay=Number(window.localStorage.getItem("yesterDay"));
+var orderCount=Number(window.localStorage.getItem("orderCount"));
 
 
 let token= window.localStorage.getItem("token");
@@ -41,6 +42,7 @@ console.log("amount is1 : "+amount)
               'Accept' : 'application/json',
               'Content-type': 'application/json; charset=UTF-8',
                Authorization : `Bearer ${token}`,
+               'Access-Control-Allow-Origin':ACAO,
               "alg": "HS256",
               "typ": "JWT"
                   }  
@@ -69,7 +71,7 @@ console.log("amount is1 : "+amount)
                                             console.log("payment successful");
 
                                             bonus=bonus+Number.parseInt(amount);
-                                            window.sessionStorage.setItem("bonus",bonus);
+                                            window.localStorage.setItem("bonus",bonus);
                                             updateBonusApi1(mobile);
 
                                            let wa= swal("Good job!", "Peyment successful..!", "success")
@@ -85,7 +87,7 @@ console.log("amount is1 : "+amount)
                                             "prefill": {
                                                 "name": "Priya Dash",
                                                 "email": "priyaDash@gmail.com",
-                                                "contact": "9765475504"
+                                                "contact": mobile,
                                             },
                                             "notes": {
                                                 "address": "Programing Wings"

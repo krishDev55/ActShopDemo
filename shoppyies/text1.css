@@ -5,8 +5,8 @@
     color: white;
 }
 #scrButton{
-    background-color: #ff0000;
-    color: white;
+    background-color: #63fc7d;
+    color: rgb(0, 0, 0);
 }
 #srcField{
     size: 80px;
@@ -16,12 +16,12 @@
 }
 #id11{
     margin-top: 10px;
-    background-color: rgb(18, 241, 10);
-    height: 170px;
+    background-color: rgb(212, 205, 205);
+    height: 80px;
     color: rgb(2, 2, 2);
 }
 #id12{
-    margin-top: 35px;
+    margin-top: 5px;
 }
 #id13{
   margin-top: 5px;
