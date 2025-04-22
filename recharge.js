@@ -4,6 +4,7 @@ let host="https://test-whjl.onrender.com";
 const ACAO="http://127.0.0.1:5500";
 
 
+
 var mobile =window.localStorage.getItem("mobile");
 var password=window.localStorage.getItem("password");
 var bonus=Number(Number(window.localStorage.getItem("bonus")).toFixed(2));
