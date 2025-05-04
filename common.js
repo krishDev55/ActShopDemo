@@ -143,7 +143,7 @@ let autoref=()=>{
                                            
                                           console.log("data is ; ", data)
 
-                                          // location.replace("dashBord.html")
+                                           location.replace("dashBord.html")
                                       }
                                         else if (data.error=="User currently  logIn in Another Window"){        
                                                   alert("User currently  logIn in Another Window");
