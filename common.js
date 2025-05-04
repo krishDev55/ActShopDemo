@@ -3,9 +3,10 @@
 
 var otpFlag;
 let count=1;
-  let host="https://test-whjl.onrender.com"
-  // let host="http://localhost:8081"
-  // const ACAO="http://127.0.0.1:5500";
+// let host="http://localhost:8081"
+//const ACAO="http://127.0.0.1:5500";
+
+let host="https://test-fc0m.onrender.com"
   const ACAO="https://actshopmoney.netlify.app";
 
   // let userAgent=!navigator.userAgent.includes("Windows");
@@ -15,7 +16,7 @@ let count=1;
    
 let autoref=()=>{
   var now = new Date();
-  var h = now.getHours();
+  var h = now.getHours(); 
   var m = now.getMinutes();
   var s = now.getSeconds();
                 if(h==22 && m==5 && s==0 ){
@@ -139,9 +140,9 @@ let autoref=()=>{
 
                                             localStorage.setItem("refer",obj.refer);
                                            
+                                          console.log("data is ; ", data)
 
-
-                                          location.replace("dashBord.html")
+                                          // location.replace("dashBord.html")
                                       }
                                         else if (data.error=="User currently  logIn in Another Window"){        
                                                   alert("User currently  logIn in Another Window");
@@ -155,7 +156,7 @@ let autoref=()=>{
                                 .catch((error)=>{
                                   // console.log(error)
                                   alert("Server is Not REady pleass Try again same time....")
-                                  location.replace("dashBord.html");
+                                  // location.replace("dashBord.html");
                                 })         
                 }
 
