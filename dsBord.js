@@ -740,7 +740,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                               console.log("Referlink res:  ",data)
                                                Swal.fire({
                                                 title: "Copy the Refer Link",
-                                                text: data,
+                                                text:` ${host}/v1/invite/register?invite=${data}`,
                                                 imageUrl: "https://i.pinimg.com/originals/4c/a7/e4/4ca7e432ada9af75316ae33f6eee6ec9.gif",
                                                 showCancelButton: true, 
                                                 confirmButtonText: 'Copy',

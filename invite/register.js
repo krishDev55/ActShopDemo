@@ -84,7 +84,7 @@ let userSave= async ()=>{
                                           }
                                           else  {
                                             alert(" User save Successfully");
-                                            location.replace("http://127.0.0.1:5500/")
+                                            location.replace(ACAO)
                                           }
                                          })
                                          .catch((error)=>{
