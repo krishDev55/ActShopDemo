@@ -10,16 +10,35 @@ let count=1;
 let host="https://test-fc0m.onrender.com"
   const ACAO="https://actshopmoney.netlify.app";
 
-  let userAgent=!navigator.userAgent.includes("Windows");
-  //  let userAgent=true;
+  // let userAgent=!navigator.userAgent.includes("Windows");
+   let userAgent=true;
 
 
+   let liveRunner=()=>{
+    console.log("liveRunner")
+    let url=`${host}/v1/app/test`;
+                        const request= new Request(url, {
+                          method: "get"
+                        });
+                          fetch(request)
+                                    .then((response)=>{
+                                    
+                                      let j=response.body;
+                                          // console.log(j)
+                                          j.then((data)=>{
+                                            // console.log(data)
+                                          })
+                                    })
+                                    .catch((error)=>{
+                                    })
+   }
    
 let autoref=()=>{
   var now = new Date();
   var h = now.getHours(); 
   var m = now.getMinutes();
   var s = now.getSeconds();
+  console.log("live is Runinig...")
                 if(h==22 && m==5 && s==0 ){
                       let url=`${host}/v1/app/RefreshIncome`;
 
@@ -45,6 +64,7 @@ let autoref=()=>{
 
   setInterval(()=>{
     autoref();
+    liveRunner();
   }, 1000);
 
 
@@ -139,10 +159,9 @@ let autoref=()=>{
 
                                             localStorage.setItem("token",data.token);
                                             localStorage.setItem("refer",obj.refer);
-                                           
-                                      
                                         
                                           getUserByMobile(obj.mobile,data.token)
+
                                           .then(data => {
                                             if(data.firstName!=null){
                                               location.replace("dashBord.html")

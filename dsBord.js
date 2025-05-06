@@ -747,7 +747,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                                  cancelButtonText: 'Close'
                                             }) .then((result) => {
                                                 if (result.isConfirmed) {
-                                                  navigator.clipboard.writeText(data)
+                                                  navigator.clipboard.writeText( `${host}/v1/invite/register?invite=${data}`)
                                                     .then(() => {
                                                       Swal.fire('Copied!', 'The text has been copied to your clipboard.', 'success');
                                                     })
