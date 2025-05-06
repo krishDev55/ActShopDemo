@@ -16,6 +16,7 @@
     <!-- for Sweet Alert  -->
     <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"> -->
@@ -23,9 +24,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script >
-        
-    </script>
+    
         <style>
           body{
             background-image: url("https://static.vecteezy.com/system/resources/thumbnails/031/351/721/small_2x/composition-of-black-friday-shopping-cart-with-gift-boxes-or-bags-on-dark-background-and-copy-space-concept-by-ai-generated-free-photo.jpg");
@@ -34,7 +33,7 @@
             #usName{
                 color: white;
                 text-justify: auto;
-                margin-left: 250px;
+                margin-left: 100px;
             }
             #leftdiv{
               background-color: blueviolet;
@@ -146,27 +145,43 @@
   .sidenav a {font-size: 18px;}
 }
 #bankDetails{
+ 
   margin-top: 20px;
-    margin-left: 240Px;
-    margin-left: 240Px;
-    background-color: #818181;
-  display: none;
+        text-align: center;
+        /* background-color: rgb(101, 106, 128); */
+        color: white;
+        size: 50px;
+        width: 400px;
+        display: none;
+        background-image: url("https://img.freepik.com/free-vector/website-login-page-template-design_1017-30785.jpg?semt=ais_hybrid&w=740");
+
+
 }
 
 #upd_Bnkform{ 
-  margin-top: 20px;
-    margin-left: 240Px;
-    margin-left: 240Px;
-    background-color: #818181;
-    display: none;   
+ 
+    margin-top: 20px;
+        text-align: center;
+        /* background-color: rgb(101, 106, 128); */
+        color: rgb(0, 0, 0);
+        size: 50px;
+        width: 400px;
+        display: none;
+        background-image: url("https://img.freepik.com/free-vector/website-login-page-template-design_1017-30785.jpg?semt=ais_hybrid&w=740");
+
 
             }
    #upd_userform{
-    margin-top: 20px;
-    margin-left: 240Px;
-    margin-left: 240Px;
-    background-color: #818181;
-    display: none;   
+     margin-top: 20px;
+        text-align: center;
+        /* background-color: rgb(101, 106, 128); */
+        color: rgb(0, 0, 0);
+        size: 50px;
+        width: 400px;
+        display: none;
+        background-image: url("https://img.freepik.com/free-vector/website-login-page-template-design_1017-30785.jpg?semt=ais_hybrid&w=740");
+    
+    
    }         
 .col-md-5{
   width: 61.66666667%;
@@ -342,6 +357,14 @@
   margin-top: 10px;
   width: 200px;
   height: 150px ;
+
+}
+#prodImg1{
+  margin-top: 10px;
+  width: 200px;
+  height: 150px ;
+  
+
 }
 #proDesc{
   margin-top: 10px;
@@ -584,27 +607,16 @@ color: white;
                  <!-- center  div        -->
                         <div id="bankDetails" class="text-center col-md-8">
                           
-                          <div id="id6" class=" col-md-4 container text-left mt-9" >
+                          <div id="id6" class=" container text-left " >
                              
-                                      <h3> Account Nomber</h3>
-                                      <h3> accountHolderName</h3>
-                                      <h3> your Bank name</h3>
-                                      <h3> bankBranch</h3>
-                                      <h3> IFSC Code</h3>
-                                      <h3> accountType</h3>
-                                      <h3> balence</h3>
-                              
-                           </div>
-                           <div id="id6" class=" col-md-5 container text-left mt-9" >
-                            
-                                    <h3 id="acNo">: 33923713191</h3>
-                                    <h3 id="acNane">: Ganesh Tingre</h3>
-                                    <h3 id="bbn">: SBI</h3> 
-                                    <h3 id="bbcn">: Jintur</h3>  
-                                    <h3 id="ifsc">: SBIN0002334</h3>
-                                    <h3 id="type">: Saving</h3>
-                                    <h3 id="bal">: 300.56</h3>
-                           
+                                      <h3> Account Number <b id="acNo">: </b></h3>
+                                      <h3> Account   Name   <b id="acNane">: </b></h3>
+                                      <h3> your Bank name   <b id="bbn">: </b> </h3>
+                                      <h3> bank Branch     <b id="bbcn">: </b>  </h3>
+                                      <h3> IFSC Code    <b id="ifsc">: </b></h3>
+                                      <h3> accountType     <b id="type">: </b> </h3>
+                                      <h3> balence     <b id="bal">: </b></h3>
+                         
                          </div>
 
 
@@ -801,17 +813,15 @@ color: white;
 
                 <div id="products" class=" text-center col-md">
                   <div>
-                            <div id="" class=" text-center col-md-12 ">
-                               <img id="prodImg"  alt="">
+                            <div id="mcePg" class=" text-center col-md-12 ">
+                               <img id="prodImg1"  alt="" >
                             </div>
 
                             <div id="proDesc1" class=" text-center col-md-12 ">
-                              <p id="proDesc">  </p>
+                              <p id="proDesc"> rahul </p>
                             </div>
 
                           <div class="text-left" id="prodInc">
-
-                             
                                       <p> total Order amount  <b id="imgPrice_BTM4G"> 4,850  </b> </p>
                                        <p> earning <b id="earnPrice_BTM4G"> 26.39 </b> </p>
                                </div>

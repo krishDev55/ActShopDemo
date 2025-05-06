@@ -1,7 +1,7 @@
 
 // import { sentOTP } from './common.js'; // Import the function from utils.js
 
-//let host="http://localhost:8081"
+// let host="http://localhost:8081"
 // const ACAO="http://127.0.0.1:5500";
 
  let host="https://test-fc0m.onrender.com"
@@ -94,9 +94,6 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                             .then((responce)=>{
                                 let j= responce.json();
                                 j.then((data)=>{
-
-                                    console.log("logOutButtonWorkDone")
-                                    console.log(data.msg)
                                     location.replace("index.html");
                                 })
                                 .catch((error)=>{
@@ -264,9 +261,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                                let ifsc= data.ifscCode;
                                                let acType= data.accountType;
                                                
-                                                console.log("error is : "+data.error);
-
-                                                document.getElementById("acNo").innerHTML=": "+Acno;
+                                               document.getElementById("acNo").innerHTML=": "+Acno;
                                              document.getElementById("acNane").innerHTML=": "+AcName;
                                              document.getElementById("bbn").innerHTML=": "+bname;
 
@@ -505,8 +500,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
        let usersSubmit=()=>{
                 const updataUserApi=`${host}/v1/user/updateUser`;
-                console.log("inside userSubit button");
-                    alert("inside method ")
+             
                     let mobNum= document.getElementById("mobNum1").value;
                     let fname= document.getElementById("firstName1").value;
                     let lname= document.getElementById("lastName1").value;
@@ -540,8 +534,8 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                             .then((responce)=>{
                        let j= responce.json();
                        j.then((data)=>{
-                            console.log("data update Succesfully")
-                            alert("data kkkkk")
+                          
+                            alert("update Succesfully")
                        })
                     })
                     .catch((error)=>{
@@ -587,23 +581,38 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                 products1.style.display="none"
                                 products.style.display="block"
 
-                               let prodImg= document.getElementById("prodImg");
+                               let prodImg1= document.getElementById("prodImg1");
                                let prodDesc= document.getElementById("proDesc");
-                               let imgPrice= document.getElementById("imgPrice");
-                               let earnPrice= document.getElementById("earnPrice");
+                               let imgPrice= document.getElementById("imgPrice_BTM4G");
+                               let earnPrice= document.getElementById("earnPrice_BTM4G");
 
-
+                            
                                 let api= `${host}/v1/app/getProduct`;
-                                fetch(api)
+
+                                const request =  new Request(api,{
+                                    method:"Get",
+                                    
+                                    headers: {
+                                        'Accept' : 'application/json',
+                                        'Content-type': 'application/json; charset=UTF-8',
+                                        'Access-Control-Allow-Origin':ACAO,
+                                        Authorization : `Bearer ${token}`,
+                                        "alg": "HS256",
+                                        "typ": "JWT"
+                                          },  
+                                  })
+                              
+                                fetch(request)
                                             .then((responce)=>{
+                                                console.log("responce check "+responce.ok)
                                                 if(responce.ok){
                                                        let j= responce.json();
                                                        j.then((data)=>{
                                                             product1=data.products;
-                                                         
-                                                            prodImg.setAttribute("src",product1.imgfileName);
+                                                            prodImg1.style.backgroundColor="red";
+                                                            prodImg1.style.color="pink";
+                                                            prodImg1.style.backgroundImage=`url(${product1.imgfileName})`;
                                                             prodDesc.innerHTML=product1.imgDescription;
-
                                                             imgPrice.innerHTML=product1.imgPrice;
                                                             earnPrice.innerHTML=product1.earnPrice;
 
@@ -706,6 +715,59 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
       }
 
 
+
+
+      let odf =()=>{
+        // let  url ="http://localhost:8081/v1/app/generate?mobile=9765475504";
+        let url=`${host}/v1/app/generate?mobile=${mobile}`;
+      const request = new Request(url, {
+          method: "Get",
+          headers:{
+              'Accept' : 'application/json',
+              'Content-type': 'application/json; charset=UTF-8',
+              'Access-Control-Allow-Origin':ACAO,
+              Authorization : `Bearer ${token}`,
+              "alg": "HS256",
+              "typ": "JWT"
+          } })
+          ;
+                       fetch(request)
+                                      .then((responce)=>{
+                                         let j= responce.text();
+                                        
+                                          j.then(data=>{
+                                              console.log("Referlink ",data)
+                                              console.log("Referlink res:  ",data)
+                                               Swal.fire({
+                                                title: "Copy the Refer Link",
+                                                text: data,
+                                                imageUrl: "https://i.pinimg.com/originals/4c/a7/e4/4ca7e432ada9af75316ae33f6eee6ec9.gif",
+                                                showCancelButton: true, 
+                                                confirmButtonText: 'Copy',
+                                                 cancelButtonText: 'Close'
+                                            }) .then((result) => {
+                                                if (result.isConfirmed) {
+                                                  navigator.clipboard.writeText(data)
+                                                    .then(() => {
+                                                      Swal.fire('Copied!', 'The text has been copied to your clipboard.', 'success');
+                                                    })
+                                                    .catch(err => {
+                                                      Swal.fire('Error', 'Failed to copy text.', 'error');
+                                                      console.error('Clipboard copy failed:', err);
+                                                    });
+                                                }
+                                              });     
+
+// -------------
+                                             })
+
+                                      })
+                                      .catch((error)=>{
+                                          console.log(error);
+                                      })
+      }
+
+
       let recharge=()=>{
         location.replace("recharge.html");
       }
@@ -713,3 +775,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
       let withdrowal=()=>{
         location.replace("Withdrowal.html");
       }
+
+
+
+
