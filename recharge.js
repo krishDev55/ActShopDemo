@@ -1,9 +1,9 @@
 
-// let host="http://localhost:8081";
-// const ACAO="http://127.0.0.1:5500";
+let host="http://localhost:8081";
+const ACAO="http://127.0.0.1:5500";
 
-let host="https://test-whjl.onrender.com";
-const ACAO="https://actshopmoney.netlify.app";
+// let host="https://test-whjl.onrender.com";
+// const ACAO="https://actshopmoney.netlify.app";
 
 
 
@@ -16,6 +16,9 @@ var orderCount=Number(window.localStorage.getItem("orderCount"));
 
 
 let token= window.localStorage.getItem("token");
+
+let email=null;
+let firstLastName=null;
 
 let payBtn=()=>{
 
@@ -68,32 +71,33 @@ console.log("amount is1 : "+amount)
                                         "order_id": data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                                        
                                         "handler": function (data){
-                                            console.log(data.razorpay_payment_id);
+                                            console.log("Actully Trans Id : "+data.razorpay_payment_id);
                                             console.log(data.razorpay_order_id);
                                             console.log(data.razorpay_signature)
                                             console.log("payment successful");
 
                                             bonus=bonus+Number.parseInt(amount);
+                                            console.log(bonus+"===="+amount)
                                             window.localStorage.setItem("bonus",bonus);
                                             updateBonusApi1(mobile);
 
                                            let wa= swal("Good job!", "Peyment successful..!", "success")
-
+                                                console.log("okk buton :"+wa)
                                            
                                            setTimeout(()=>{
-                                                 location.replace("dashBord.html");
+                                                //  location.replace("dashBord.html");
 
                                             },8000)
 
                                             },
 
                                             "prefill": {
-                                                "name": "Priya Dash",
-                                                "email": "priyaDash@gmail.com",
+                                                "name": firstLastName,
+                                                "email": email,
                                                 "contact": mobile,
                                             },
                                             "notes": {
-                                                "address": "Programing Wings"
+                                                "address": "ActShop.com"
                                             },
                                             "theme": {
                                                     "color": "#3399cc"
@@ -136,7 +140,15 @@ let updateBonusApi1=(mobile)=>{
                     console.log("funtion method : ", bonus);
           
                   const request = new Request(updateBonusApi, {
-                      method: "put"
+                      method: "put",
+                      headers: {
+                        'Accept' : 'application/json',
+                        'Content-type': 'application/json; charset=UTF-8',
+                         Authorization : `Bearer ${token}`,
+                         'Access-Control-Allow-Origin':ACAO,
+                        "alg": "HS256",
+                        "typ": "JWT"
+                            }  
                           })
                       ;
           
@@ -154,3 +166,38 @@ let updateBonusApi1=(mobile)=>{
             
             location.replace("dashBord.html")
             }            
+
+    let getUserByMobile=(mobile)=>{
+
+        let getUserFindByMobile=`${host}/v1/user/getUserByMobile/${mobile}`;
+        // console.log("funtion method : ", bonus);
+
+      const request = new Request(getUserFindByMobile, {
+          method: "Get",
+          headers: {
+            'Accept' : 'application/json',
+            'Content-type': 'application/json; charset=UTF-8',
+             Authorization : `Bearer ${token}`,
+             'Access-Control-Allow-Origin':ACAO,
+            "alg": "HS256",
+            "typ": "JWT"
+                }  
+              });
+          
+
+                      fetch(request)
+                                      .then((responce)=>{
+                                       let j= responce.json()
+                                        j.then(data=>{
+                                           firstLastName=data.firstName +" "+data.lastName;
+                                           email=data.email;
+                                          })
+                                      })
+                                      .catch((error)=>{
+                                          console.log(error);
+                                      })
+
+                            
+    }        
+
+    getUserByMobile(mobile);

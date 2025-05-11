@@ -2,18 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta HTTP-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> User Profile Card </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
     <style>
-        body{
-            /* background-color: aqua; */
-            background-image: "t1.jpeg";
-        }
+#mainDiv{
+    display: flex;
+    background-color: rgb(243, 243, 243);
+    width: 900px;
+    height: 900px;
+    margin: 10px;
+}
+
+#insDiv1{
+    background-color: rgb(27, 19, 19);
+    width: 200px;
+    height: 200px;
+  
+}
+#insDiv2{
+    background-color: rgb(65, 143, 85);
+    width: 200px;
+    height: 200px;
+    margin: 30px;
+    /* padding: auto; */
+}
+#insDiv3{
+    background-color: rgb(41, 33, 88);
+    width: 200px;
+    height: 200px;
+    /* margin: auto; */
+}
     </style>
+
 </head>
+
 <body>
 
+    <marquee id="markq" behavior="role" direction="left" onplay="">
+        <Div id ="mainDiv">
+    <div id ="insDiv1">
 
-    
+    </div>
+    <div id ="insDiv2">
+        
+    </div>
+    <div id ="insDiv3">
+        
+    </div>
+</Div>
+</marquee>
 </body>
+<script src="script.js"></script>
 </html>

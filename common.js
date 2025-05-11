@@ -10,8 +10,8 @@ let count=1;
 let host="https://test-fc0m.onrender.com"
   const ACAO="https://actshopmoney.netlify.app";
 
-  // let userAgent=!navigator.userAgent.includes("Windows");
-   let userAgent=true;
+  let userAgent=!navigator.userAgent.includes("Windows");
+  //  let userAgent=true;
 
 
    let liveRunner=()=>{
@@ -64,8 +64,8 @@ let autoref=()=>{
 
   setInterval(()=>{
     autoref();
-    liveRunner();
-  }, 1000);
+    // liveRunner();
+  }, 1000*60);
 
 
     let login=()=>{
@@ -129,8 +129,10 @@ let autoref=()=>{
                                     'Content-type': 'application/json; charset=UTF-8',
                                     'Access-Control-Allow-Origin':ACAO,
                                         }  
-                                  });            
+                                  });          
+                               
                         fetch(request)
+
                                 .then((response)=>{ 
                                  
                                     let j=response.json();
@@ -164,11 +166,11 @@ let autoref=()=>{
 
                                           .then(data => {
                                             if(data.firstName!=null){
-                                              location.replace("dashBord.html")
+                                              location.replace(`${ACAO}/dashBord.html`)
                                             }
                                             else{
-                                             alert("Frist user do update the imformation");
-                                             location.replace("dashBord.html")
+                                            
+                                             location.replace(`${ACAO}/dashBord.html?update=${obj.mobile}`)
                                             }
                                           }).catch(error=>{
                                             console.log("error1"+error)

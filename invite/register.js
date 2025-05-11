@@ -5,7 +5,6 @@
 let host="https://test-fc0m.onrender.com"
   const ACAO="https://actshopmoney.netlify.app";
 
-  // let userAgent=!navigator.userAgent.includes("Windows");
 
 const urlParams = new URLSearchParams(window.location.search);
 const inviteCode = urlParams.get('massage');

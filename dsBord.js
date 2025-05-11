@@ -7,8 +7,11 @@
  let host="https://test-fc0m.onrender.com"
 const ACAO="https://actshopmoney.netlify.app";
 
+const urlParams = new URLSearchParams(window.location.search);
+const up123 = urlParams.get('update');
 
 var firstLastName;
+var email;
 var userData;
 let userBankDetails;
 
@@ -23,10 +26,27 @@ var orderCount=Number(window.localStorage.getItem("orderCount"));
 var refer=window.localStorage.getItem("refer");
 let token= window.localStorage.getItem("token");
 
-    // console.log("Object print is : "+mobile)
-    // console.log("Object print is : "+password)
-    // console.log("Object print is : "+bonus)
-    // console.log("Object print is : "+refer)
+// -------------------------- Display Show Or Off Property---------------------------------------------------------------------
+
+let bnkDetails= document.getElementById("bankDetails");
+            let leftDiv= document.getElementById("leftdiv");
+            let rightDiv= document.getElementById("rightdiv");
+            let img= document.getElementById("img");
+            let bnkForm= document.getElementById("upd_Bnkform");
+            let upduser_Form= document.getElementById("upd_userform");
+
+
+
+            let place_order=document.getElementById("place-order");
+            let placeOrder1=document.getElementById("placeOrder");
+
+            let products=document.getElementById("products");
+            let products1=document.getElementById("products1");
+
+            let divOrder=document.getElementById("divOrder");
+            let divOrder2=document.getElementById("divOrder2");
+
+// --------------------------------------------------------------------------------------
 
    
 
@@ -69,14 +89,13 @@ let token= window.localStorage.getItem("token");
 
 
 let logoutid= document.getElementById("logoutid");
-let logOutApi=`${host}/v1/app/logOut/${mobile}`;
+
 
     
     
     let logOut=()=>{
-        
-        console.log(`Bearer ${token}`);
 
+        let logOutApi=`${host}/v1/app/logOut/${mobile}`;
         const request = new Request(logOutApi, {
             method: "GET",
             
@@ -84,6 +103,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
             'Accept' : 'application/json',
             'Content-type': 'application/json; charset=UTF-8',
           Authorization : `Bearer ${token}`,
+          'Access-Control-Allow-Origin':ACAO,
                      "alg": "HS256",
                      "typ": "JWT"
           
@@ -104,10 +124,11 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
 
 
-    let FindByMobile= `${host}/v1/user/getUserByMobile/${mobile}`;
                 
                 var firstName="";
                 let getUserFindByMobile=()=>{
+                    upduser_Form.style.display="none";
+                    let FindByMobile= `${host}/v1/user/getUserByMobile/${mobile}`;
                           fetch(FindByMobile,{
                             method: "GET",
             
@@ -125,11 +146,23 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                     .then((responce)=>{
                                         userData=responce.json();
                                         userData.then((data)=>{
-                                            firstName=data.firstName;                                        
+                                            email=data.email;
+                                            firstName=data.firstName;  
+                                            if(firstName==null){
+                                                // document.getElementById("upd_userform").style.display="block";
+                                                // swal({
+                                                //     title: "okk",
+                                                //     text: "Frist user do update the imformation",
+                                                //     imageUrl: "images/thumbs-up.jpg"
+                                                // });   
+      
+                                                uptUser();
+                                            }  
+                                            else{                                    
                                             let usname=document.getElementById("usName");
                                             firstLastName=firstName + " " +data.lastName;
                                             usname.innerHTML=firstLastName;
-
+                                            }
                                         })
                                         .catch((error)=>{
                                             
@@ -157,32 +190,16 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
             
             getUserFindByMobile();
 
-            let bnkDetails= document.getElementById("bankDetails");
-            let leftDiv= document.getElementById("leftdiv");
-            let rightDiv= document.getElementById("rightdiv");
-            let img= document.getElementById("img");
-            let bnkForm= document.getElementById("upd_Bnkform");
-            let upduser_Form= document.getElementById("upd_userform");
-
-
-
-            let place_order=document.getElementById("place-order");
-            let placeOrder1=document.getElementById("placeOrder");
-
-            let products=document.getElementById("products");
-            let products1=document.getElementById("products1");
-
-            let divOrder=document.getElementById("divOrder");
-            let divOrder2=document.getElementById("divOrder2");
+            
           
 
 
 
+           
 
     funtionGetByBankDetails=()=>{
        
         let bankApi=`${host}/v1/app/getbankDByMobile/${mobile}`;
-
                 
         fetch(bankApi,{
             method: "Get",
@@ -499,6 +516,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
 
        let usersSubmit=()=>{
+      
                 const updataUserApi=`${host}/v1/user/updateUser`;
              
                     let mobNum= document.getElementById("mobNum1").value;
@@ -507,42 +525,51 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                     let email1= document.getElementById("email1").value;
              
 
-                   let otp= window.sentOTP(email1);
-                    console.log("text Otp: "+otp)
+                //    let otp= window.sentOTP(email1);
+                //     console.log("text Otp: "+otp)
 
                     userData.then((data)=>{
                     const request =  new Request(updataUserApi,{
                       method:"PUT",
                       
                       headers: {
-                        'Accept' : 'application/json',
-                        'Content-type': 'application/json; charset=UTF-8',
+                       'Accept' : 'application/json',
+                                'Content-type': 'application/json; charset=UTF-8',
+                                'Access-Control-Allow-Origin':ACAO,
+                                Authorization : `Bearer ${token}`,
+                                "alg": "HS256",
+                                "typ": "JWT"
                             },  
                             body: JSON.stringify(
                                 { 
-                                       "id": data.id,
+                                       
+                                       "mobile":data.mobile,
                                        "firstName":fname,
                                        "lastName": lname ,
-                                       "mobile":data.mobile,
                                        "email": email1
                                                                      
                                    }),
                     })
-                    console.log("before request method")
+                
                    
                     fetch(request)
                             .then((responce)=>{
                        let j= responce.json();
                        j.then((data)=>{
-                          
-                            alert("update Succesfully")
+                       
+                          location.replace(`${ACAO}/dashBord.html`)
                        })
                     })
                     .catch((error)=>{
                             console.log(error)
                     })
                 
-                });
+                })
+
+
+
+
+                
        }
 
 
@@ -562,9 +589,6 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
 
           document.getElementById("todayIncome").innerHTML=Number(todayEarn.toFixed(2));
           document.getElementById("yesterDayEarn").innerHTML=yesterDay;
-
-
-          console.log("orderCount : "+orderCount ," todayEarn : "+todayEarn ," amnt: "+amnt)
 
        }
 
@@ -650,8 +674,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
  
               let percent=(product1.earnPrice/100)*10;
              let v= Number(percent.valueOf().toFixed(2));
-             
-             console.log(product1.earnPrice , " valueof  ", v , "  percent: "+ percent )
+
               document.getElementById("myEarn").innerHTML=v;
         },3000)
 
@@ -679,7 +702,7 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
       let updateBonusApi1=(mobile)=>{
 
           let updateBonusApi=`${host}/v1/app/updateBonus/${mobile}/${Number(bonus.toFixed(2))}/${Number(todayEarn.toFixed(2))}/${orderCount}`
-          console.log("funtion method : ", bonus);
+          
 
         const request = new Request(updateBonusApi, {
             method: "put",
@@ -699,7 +722,6 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
                                         .then((responce)=>{
                                                let j= responce.json();
                                                j.then(data=>{
-                                                 console.log(data)
                                                     localStorage.setItem("bonus",data.bonus);
                                                     localStorage.setItem("todayEarn",data.totayEarn);
                                                     localStorage.setItem("yesterDay",data.yesterdayEarn);
@@ -773,9 +795,22 @@ let logOutApi=`${host}/v1/app/logOut/${mobile}`;
       }
 
       let withdrowal=()=>{
-        location.replace("Withdrowal.html");
+        bonus>=500 
+        ? location.replace("Withdrowal.html")
+        :(Swal.fire('Oops', 'your Ballance is less Than 500', 'error'))
+
+      
+      }
+
+      let teamR=()=>{
+            location.replace(`teamReport.html?mobile=${mobile}`)
       }
 
 
+
+      let transaction=()=>{
+            location.replace(`tranction/BankTranction.html?email=${email}`)
+
+      }
 
 
