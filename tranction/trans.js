@@ -11,6 +11,7 @@ let token= window.localStorage.getItem("token");
 let mobile= localStorage.getItem("mobile");
 
 getBankTranctionByEmail=()=>{
+    console.log("email is : "+email)
         let bankTranctionApi=`${host}/v1/rozorPay/getPaymentsByEmail/${email}`
         const request = new Request(bankTranctionApi, {
             method: "Get",  
