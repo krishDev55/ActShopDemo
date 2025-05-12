@@ -7,8 +7,12 @@ let count=1;
 // const ACAO="http://127.0.0.1:5500";   
 
 
-let host="https://test-fc0m.onrender.com"
-  const ACAO="https://actshopmoney.netlify.app";
+// let host="https://test-fc0m.onrender.com"
+//   const ACAO="https://actshopmoney.netlify.app";
+
+let host=AppConfig.host;
+let ACAO=AppConfig.ACAO;
+console.log("host is : "+host)
 
   let userAgent=!navigator.userAgent.includes("Windows");
   //  let userAgent=true;
