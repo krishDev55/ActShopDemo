@@ -172,14 +172,14 @@
 
 
             }
-   #upd_userform{
-     margin-top: 20px;
-        text-align: center;
+            #upd_userform{
+              margin-top: 20px;
+              text-align: center;
         /* background-color: rgb(101, 106, 128); */
-        color: rgb(0, 0, 0);
+        color: rgb(228, 200, 200);
         size: 50px;
         width: 400px;
-        display: none;
+        display: block;
         background-image: url("https://img.freepik.com/free-vector/website-login-page-template-design_1017-30785.jpg?semt=ais_hybrid&w=740");
     
     
@@ -660,6 +660,13 @@ color: white;
 
                         <div id="upd_userform" class="text-left col-md-8">
                           <div id="parsanalDitais" class="text-center:col-md-8">
+                              <div id="imgOpt">
+                                <video id="video" autoplay playsinline width="200"></video>
+                                <button onclick="capturePhoto()">Take Photo</button>
+                                <canvas id="canvas" style="display:none;"></canvas>
+                              </div>
+                            <img id="photo" alt="Captured Photo" style="width: 200px; margin-top: 30px;" />
+
                            <form  onsubmit="usersSubmit();">
                               <h3> Mobile Number   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;
                                           <input id="mobNum1" type="text" readonly placeholder="Mobile Number"> </h3>

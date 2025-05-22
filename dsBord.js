@@ -51,8 +51,31 @@ let bnkDetails= document.getElementById("bankDetails");
 
 // --------------------------------------------------------------------------------------
 
-   
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const photo = document.getElementById('photo');
 
+// Start the camera
+navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+  .then(stream => {
+    video.srcObject = stream;
+  })
+  .catch(err => {
+    console.error("Error: ", err);
+  });
+   
+// Capture photo
+function capturePhoto() {
+    const context = canvas.getContext('2d');
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const imageData = canvas.toDataURL('image/png');
+    photo.src = imageData;
+    document.getElementById("imgOpt").style.display="none";
+  }
+
+// ----------------------------------------------------------------------------------------------------
     let uname= document.getElementById("userName");
     // uname.innerHTML=mobile;
      
