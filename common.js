@@ -1,48 +1,24 @@
 
-
+// this is the file for testing the vsStudeo check for gitHub
 
 var otpFlag;
 let count=1;
 // let host="http://localhost:8081"
-// const ACAO="http://127.0.0.1:5500";   
+// const ACAO="http://127.0.0.1:5500";
+
+let host="https://test-fc0m.onrender.com"
+  const ACAO="https://actshopmoney.netlify.app";
+
+  // let userAgent=!navigator.userAgent.includes("Windows");
+   let userAgent=true;
 
 
-// let host="https://test-fc0m.onrender.com"
-//   const ACAO="https://actshopmoney.netlify.app";
-
-let host=AppConfig.host;
-let ACAO=AppConfig.ACAO;
-console.log("host is : "+host)
-
-  let userAgent=!navigator.userAgent.includes("Windows");
-  //  let userAgent=true;
-
-
-   let liveRunner=()=>{
-    console.log("liveRunner")
-    let url=`${host}/v1/app/test`;
-                        const request= new Request(url, {
-                          method: "get"
-                        });
-                          fetch(request)
-                                    .then((response)=>{
-                                    
-                                      let j=response.body;
-                                          // console.log(j)
-                                          j.then((data)=>{
-                                            // console.log(data)
-                                          })
-                                    })
-                                    .catch((error)=>{
-                                    })
-   }
    
 let autoref=()=>{
   var now = new Date();
-  var h = now.getHours(); 
+  var h = now.getHours();
   var m = now.getMinutes();
   var s = now.getSeconds();
-  console.log("live is Runinig...")
                 if(h==22 && m==5 && s==0 ){
                       let url=`${host}/v1/app/RefreshIncome`;
 
@@ -68,8 +44,7 @@ let autoref=()=>{
 
   setInterval(()=>{
     autoref();
-    // liveRunner();
-  }, 1000*60);
+  }, 1000);
 
 
     let login=()=>{
@@ -133,13 +108,12 @@ let autoref=()=>{
                                     'Content-type': 'application/json; charset=UTF-8',
                                     'Access-Control-Allow-Origin':ACAO,
                                         }  
-                                  });          
-                               
+                                  });            
                         fetch(request)
-
                                 .then((response)=>{ 
                                  
                                     let j=response.json();
+                                    console.log("data is J : ",j)
                                       j.then((data)=>{
                                     
                                         console.log(data.token);
@@ -164,22 +138,12 @@ let autoref=()=>{
                                             localStorage.setItem("orderCount",obj.orderCount);
 
                                             localStorage.setItem("token",data.token);
+
                                             localStorage.setItem("refer",obj.refer);
-                                        
-                                          getUserByMobile(obj.mobile,data.token)
+                                           
 
-                                          .then(data => {
-                                            if(data.firstName!=null){
-                                              location.replace(`${ACAO}/dashBord.html`)
-                                            }
-                                            else{
-                                            
-                                             location.replace(`${ACAO}/dashBord.html?update=${obj.mobile}`)
-                                            }
-                                          }).catch(error=>{
-                                            console.log("error1"+error)
-                                          })
 
+                                          // location.replace("dashBord.html")
                                       }
                                         else if (data.error=="User currently  logIn in Another Window"){        
                                                   alert("User currently  logIn in Another Window");
@@ -193,7 +157,7 @@ let autoref=()=>{
                                 .catch((error)=>{
                                   // console.log(error)
                                   alert("Server is Not REady pleass Try again same time....")
-                                  // location.replace("dashBord.html");
+                                  // location.replace("inde");
                                 })         
                 }
 
@@ -249,14 +213,11 @@ let autoref=()=>{
                                          { 
                                           "mobile" :mobile1,
                                            "password":pwd1
-                                          
                                          }
                                        ),
                                        headers: {
-                                        'Accept' : 'application/json',
-                                        'Content-type': 'application/json; charset=UTF-8',
-                                        'Access-Control-Allow-Origin':ACAO,
-                                        "email":email
+                                         'Accept' : 'application/json',
+                                         'Content-type': 'application/json; charset=UTF-8',
                                              }  
                                        }); 
 
@@ -327,46 +288,6 @@ let autoref=()=>{
                               })
                             return Otp; 
                 }
-         
-                
-        let getUserByMobile=(mobile,token)=>{
-                   let url= `${host}/v1/user/getUserByMobile/${mobile}`;
-
-                   const request = new Request(url, {
-                    method: "Get",  
-                    headers: {
-                      'Accept' : 'application/json',
-                      'Content-type': 'application/json; charset=UTF-8',
-                      'Access-Control-Allow-Origin':ACAO,
-                      Authorization : `Bearer ${token}`,
-                      "alg": "HS256",
-                      "typ": "JWT"
-                          }  
-                    }); 
-
-             return fetch(request)
-                    .then(response => {
-                      if (!response.ok) {
-                          throw new Error(`HTTP error! Status: ${response.status}`);
-                      }
-                      return response.json();
-                  })
-                  .catch(error => {
-                      console.error("Error fetching data:", error);
-                  });
-                //  responce.then(data=>{
-                //   let p=data.json();
-                //   p.then(m=>{
-                //     console.log("data is "+p)
-                //     console.log("data is "+JSON.stringify(m))
-                //     return  JSON.stringify(m);
-
-                //   })
-                //  })
-                //   .catch(error=>{
-                //     console.error("error is "+error)
-                //       return error;
-                //   })
-                }
+              
                 
                 
