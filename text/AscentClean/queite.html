@@ -14,6 +14,10 @@
      <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 
+      <!-- for Sweet Alert  -->
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 
@@ -351,25 +355,152 @@
 
 <script>
 
+let host="https://actshopmoney.netlify.app"
+
 const urlParams = new URLSearchParams(window.location.search);
-const quoteId = urlParams.get('quote');
-console.log("Code is : ",quoteId);
+const quoteId = urlParams.get('quoteName');
+
 if(quoteId==null){
     document.getElementById("genrateQuote").style.display="block"
-}
+    }
 else{
-try{
-let quoteHtml=document.getElementById(quoteId);
-      quoteHtml.style.display="block"
-}catch{
-    console.log("Code is error: ");
-    swal({
-      title: "error!",
-      text: quoteId +" this Quote Is not Genrate...!!!!!",
-      imageUrl: "images/thumbs-up.jpg"
-  });      
-}
-}
+        try{
+        const quoteId = urlParams.get('quoteName');
+         const quoteToDate = urlParams.get('quoteDate');
+          const ls = urlParams.get('ls');
+           const cp = urlParams.get('cp');
+            const gp = urlParams.get('gp');
+             const tc = urlParams.get('tc');
+              const hr = urlParams.get('hr');
+               const gc = urlParams.get('gc');
+                const ca = urlParams.get('ca');
+                 const rf = urlParams.get('rf');
+               
+
+        let divQ= document.getElementById("divQuote");
+            let newDiv=document.createElement("div");
+            newDiv.setAttribute("id",`${quoteToName}`)
+                newDiv.setAttribute("class","page")
+                newDiv.innerHTML=`
+       
+            <div class="geometric-bg">
+            </div>
+
+                <div class="header">
+                    <h2><strong style="background-color: #1abc9c;">ASCENT PUNE</strong></h2>
+                    <h2> <a style="background-color: #1abc9c; color: 
+                    white;">QUOTATION</a>  </h2>
+                </div>
+                
+            
+            
+            <div class="details">
+                <div><strong>QUOTE TO:</strong> ${quoteId}</div>
+                <div><strong>DATE:</strong> ${quoteToDate}</div>
+            </div>
+            <div class="entity text-center">
+            <p class="desc">DESCRIPTION OF HOUSEKEEPING CHEMICALS</p>
+            </div>
+
+
+            <table class="rate-table">
+            <thead>
+                <tr>
+                <th>Material</th>
+                <th>Rate (₹)</th>
+                <th>Quantity</th>
+                <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Liquid Soap/Dish WAsh </td>
+                    <td> ${ls} </td>
+                    <td>5 Ltr</td>
+                    <td> </td>
+                </tr>
+
+                <tr>
+                    <td>Color Phenyl</td>
+                    <td>${cp}</td>
+                    <td>5 Ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Green Phenyl</td>
+                    <td>${gp}</td>
+                    <td>5 Ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Toilet Cleaner (Harpic)</td>
+                    <td>${tc}</td>
+                    <td>5 Ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Handwash Regular</td>
+                    <td>${hr}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Glass Cleaner</td>
+                    <td>${gc}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Cleaning Acid</td>
+                    <td>${ca}</td>
+                    <td>1 ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Room Freshener</td>
+                    <td>${rf}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
+                </tr>
+            </tbody>
+            </table>
+
+            <div class="footer">
+                
+                <div class="terms">
+                    <h3>Terms and Conditions:</h3>
+                    <br>
+                    <ul>
+                        <li>All rates including cans and packings, no extra charge.</li>
+                        <li>GST extra if needed.</li>
+                        <li>Material Delivery Next Day of Order Placed.</li>
+                    </ul>
+                </div>
+                <br><br>
+                <div id="authSign"> </div>
+                <p><strong>Authorised Signatory</strong></p>
+                <button id="subBtnId" class="btn-primary" onclick="window.print()"> Download </button>
+            </div>
+            <br>
+            <p><strong>In Favour of Entity Name:</strong> Ascent Agency Pune</p>
+            <br><br><br>
+            
+            <div class="geometric-footer"></div>
+
+       
+       `
+
+         divQ.appendChild(newDiv);
+
+        }catch{
+            console.log("Code is error: ");
+            swal({
+            title: "error!",
+            text: quoteId +" this Quote Is not Genrate...!!!!!",
+            imageUrl: "images/thumbs-up.jpg"
+        });      
+        }
+    }
 
 
 
@@ -390,6 +521,9 @@ let submitQuote=()=>{
        let newDiv=document.createElement("div");
        newDiv.setAttribute("id",`${quoteToName}`)
          newDiv.setAttribute("class","page")
+
+
+          let genrateLink= `${host}/text/AscentClean/queite.html?quoteName=${quoteToName}&quoteDate=${quoteToDate}&ls=${ls}&cp=${cp}&gp=${gp}&tc=${tc}&hr=${hr}&gc=${gc}&ca=${ca}&rf=${rf}`
 
        newDiv.innerHTML=`
        
@@ -438,7 +572,7 @@ let submitQuote=()=>{
                     </tr>
                 <tr>
                 <td>Green Phenyl</td>
-                <td>${gp}</td>
+                <td>${gp} </td>
                 <td>5 Ltr</td>
                 <td> </td>
                 </tr>
@@ -499,15 +633,36 @@ let submitQuote=()=>{
        
        `
  divQ.appendChild(newDiv);
-
+  
    console.log("Code is error: ");
-    swal({
-      title: "this Quote Is  Genrate...!!!!!",
-      text:  `http://127.0.0.1:5500/demoApp-ActShop/text/AscentClean/queite.html?quote=${quoteToName}`,   
-      imageUrl: "images/thumbs-up.jpg"
-  });      
+//     swal({
+//       title: "this Quote Is  Genrate...!!!!!",
+//       text:  `${genrateLink}`,   
+//       imageUrl: "images/thumbs-up.jpg"
+//   });      
+
+                       Swal.fire({
+                                                title: "this Quote Is  Genrate...!!!!!",
+                                                text:`${genrateLink}`,
+                                                imageUrl: "https://i.pinimg.com/originals/4c/a7/e4/4ca7e432ada9af75316ae33f6eee6ec9.gif",
+                                                showCancelButton: true, 
+                                                confirmButtonText: 'Copy',
+                                                 cancelButtonText: 'Close'
+                                            }) .then((result) => {
+                                                if (result.isConfirmed) {
+                                                  navigator.clipboard.writeText( `${genrateLink}`)
+                                                    .then(() => {
+                                                      Swal.fire('Copied!', 'The text has been copied to your clipboard.', 'success');
+                                                    })
+                                                    .catch(err => {
+                                                      Swal.fire('Error', 'Failed to copy text.', 'error');
+                                                      console.error('Clipboard copy failed:', err);
+                                                    });
+                                                }
+                                              });  
 
    document.getElementById("genrateQuote").style.display="none"
+
 
 }
 
