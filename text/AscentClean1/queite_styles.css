@@ -1,0 +1,156 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.page {
+  position: relative;
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: white;
+  padding: 40px 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Geometric green header */
+.geometric-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #2ecc71 40%, #27ae60 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 60%, 0 100%);
+  z-index: 0;
+}
+
+/* Geometric footer shape */
+.geometric-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(-135deg, #27ae60 30%, #1abc9c 100%);
+  clip-path: polygon(100% 100%, 0 100%, 0 40%, 100% 0);
+  z-index: 0;
+}
+
+.header {
+  text-align: center;
+  margin-top: 60px;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+#authSign{
+    width:270px;
+    height: 50px;
+    background-color: #e6f0ea;
+    border-radius: 2px;
+ 
+  
+}
+
+.header h1 {
+  font-size: 22px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.header h2 {
+  font-size: 30px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.desc {
+  font-size:  22px;
+  margin-top: 10px;
+  font-weight: 300;
+ color: white;
+  background-color: rgb(12, 11, 11);
+ size: 80%;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0 10px;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.entity {
+  margin: 10px 0 20px;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.rate-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.rate-table th {
+  background-color: #27ae60;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.rate-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer {
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.terms {
+  margin-top: 20px;
+}
+
+.terms h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.terms ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.terms ul li {
+  margin-bottom: 6px;
+}
+
+#subBtnId{
+    margin-left: 550px;
+    margin-top: -500px;
+    width: 150px;
+    height: 50px;
+}
+
+#genrateQuote{
+    display: none;
+}
+  #temp_2345334{
+    display: none;
+    
+  }
+#imperial_moshi_72892{
+    display: none;
+}

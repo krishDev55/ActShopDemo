@@ -1,0 +1,43 @@
+{
+    "Select Costomer":{ 
+        "name":"",
+        "mobile":"",
+        "address": "",
+        "GST_No":"",
+        "Pan_Card": ""
+      },
+
+    "Rk_industry":{ 
+        "name":"RK industry",
+        "mobile":"909090909",
+        "email":"rkIndustry@gmail.com",
+        "address": "Shine  City chikhali",
+        "GST_No":"7483S7GerCtev",
+        "Pan_Card": "xxxxx0000X",
+        "rate":{
+            "LiquidSoup": 115,
+            "ToiletCleanner": 115,
+            "Handwash"  :300
+        }
+
+      },
+
+       "Kartik_Hospital_Chinchwad":{ 
+        "name":"Kartik Hospital Chinchwad",
+        "mobile":"0000000000",
+        "address": "Chinchwad",
+        "GST_No":"XXXXXXXXXXX",
+        "Pan_Card": "xxxxx0000X"
+      }
+      ,
+
+      "Kartik_Hospital_Pradhikarn":{ 
+        "name":"Kartik Hospital Pradhikarn",
+        "mobile":"0000000000",
+        "address": "Pradhikaran Nigdi",
+        "GST_No":"XXXXXXXXXXX",
+        "Pan_Card": "xxxxx0000X"
+      }
+
+}
+
