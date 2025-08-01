@@ -1,3 +1,9 @@
+
+let hostApi="http://192.168.1.108:8086"
+// let hostApi="http://localhost:8086"
+// let hostApi="http://192.168.1.108:8086:8086"
+
+
 // Example JavaScript to smooth-scroll to the products section
 function scrollToProducts() {
     const productsSection = document.getElementById('products');
@@ -41,18 +47,28 @@ function scrollToProducts() {
                   
 
 
-          $("#billImfo").click(function(){
+  $("#billImfo").click(function(){
               $(".hero").hide();
               $(".intro").hide();
               $(".products").hide();
+
+
             $("#billimfoIfreme").show();
-             
+              let tempREmove =document.getElementById("to");
+                  let innerDivs=  tempREmove.querySelectorAll('select');
+                    innerDivs.forEach(div => div.remove());
+                    
+
+                  //   let tempREmove1 =document.getElementById("chackBillImfo");
+                  // let innerDivs1=  tempREmove1.querySelectorAll('div');
+                  //   innerDivs1.forEach(div => div.remove());
 
             let allCustomer=()=>{
              let to=document.getElementById("to");
              let selectCo= document.createElement("select");
              selectCo.setAttribute("name","CostomerList");
              selectCo.setAttribute("id","costomer");
+              selectCo.setAttribute("class","classCustomer");
 
           fetch('./imfo.json')
           .then(response => response.json())
@@ -77,8 +93,9 @@ function scrollToProducts() {
 
   $("#getImfoBtn").click(()=>{
             let value= $("#costomer").val();
+            $("#chackBillImfo").show();
           
-           let url=`http://localhost:8086/api/getBillsByCostomerName/${value}`
+           let url=`${hostApi}/api/getBillsByCostomerName/${value}`
             const request = new Request(url, {
           method: "Get",
           headers:{
@@ -95,10 +112,11 @@ function scrollToProducts() {
                       let j= data.json();
                       console.log("value is1 : "+j)
                        j.then(v=>{
-                      let t = document.getElementById("t");
-                      const innerDivs = t.querySelectorAll('div');
-                              // Remove each one
-                            innerDivs.forEach(div => div.remove());
+                      let t = document.getElementById("chackBillImfo");
+                      t.style.display="block";
+                      // const innerDivs = t.querySelectorAll('div');
+                      //         // Remove each one
+                      //       innerDivs.forEach(div => div.remove());
                                                   
                       let count=1;
                     
@@ -124,12 +142,18 @@ function scrollToProducts() {
 
                                     <h4 id="g_totalH"> Grand Total : <a id ="G_total${count}"> 3400 </a> </h4>
                               `
-                              t.append(t1);
+                              ;
+
+
+                               t.append(t1);
+
 
                             let G_total=0; 
                             let dCount=0;
                             let tbody= document.getElementById(`tBody${count}`);
+                            console.log( "tBody element is : "+tbody.innerHTML)
                            let keys =Object.keys(element);
+                           console.log("keys is "+keys)
                            for (const key of keys) {
                                       let tr = document.createElement("tr");
                                       if(`${key}`==`date`){
@@ -228,6 +252,15 @@ function scrollToProducts() {
                         }
 
 
+                $("#img-id").click(()=>{
+                  $("#billimfoIfreme").hide();
+                })
+
+                 $(".btn-cancel").click(()=>{
+                    $("#billimfoIfreme").hide();
+                })
+                
+                
 
 
 

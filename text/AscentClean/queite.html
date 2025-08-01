@@ -25,11 +25,14 @@
 </head>
 <body>
 <div id="divQuote">
-        <div class="page" id="temp_2345334">
-            <div class="geometric-bg">
+        <div class="page1" id="temp_2345334">
+              <div class="geometric-bg">
             </div>
 
                 <div class="header">
+                   <img id="image_logo" src="../AscentClean/products/Logo/logo.png" alt="">
+                   <h3 id="contactId"><strong style="background-color: #1abc9c;"> email: ascent.agency.pune@gmail.com <br><br> Mo: 9765475504</strong></h3>
+                   
                     <h2><strong style="background-color: #1abc9c;">ASCENT PUNE</strong></h2>
                     <h2> <a style="background-color: #1abc9c; color: 
                     white;">QUOTATION</a>  </h2>
@@ -38,8 +41,8 @@
             
             
             <div class="details">
-                <div><strong>QUOTE TO:</strong> Hotel Moshi Imperial</div>
-                <div><strong>DATE:</strong> 20 Sept, 2024</div>
+                <div><strong>QUOTE TO:</strong> ${quoteId}</div>
+                <div><strong>DATE:</strong> ${quoteToDate}</div>
             </div>
             <div class="entity text-center">
             <p class="desc">DESCRIPTION OF HOUSEKEEPING CHEMICALS</p>
@@ -58,51 +61,52 @@
             <tbody>
                 <tr>
                     <td>Liquid Soap/Dish WAsh </td>
-                    <td>250 </td>
+                    <td> ${ls} </td>
                     <td>5 Ltr</td>
                     <td> </td>
-                    </tr>
-                    <tr>
+                </tr>
+
+                <tr>
                     <td>Color Phenyl</td>
-                    <td>210</td>
+                    <td>${cp}</td>
                     <td>5 Ltr</td>
                     <td> </td>
-                    </tr>
-                <tr>
-                <td>Green Phenyl</td>
-                <td>500/610</td>
-                <td>5 Ltr</td>
-                <td> </td>
                 </tr>
                 <tr>
-                <td>Toilet Cleaner (Harpic)</td>
-                <td>300</td>
-                <td>5 Ltr</td>
-                <td> </td>
+                    <td>Green Phenyl</td>
+                    <td>${gp}</td>
+                    <td>5 Ltr</td>
+                    <td> </td>
                 </tr>
                 <tr>
-                <td>Handwash Regular</td>
-                <td>380</td>
-                <td>5 ltr</td>
-                <td> </td>
+                    <td>Toilet Cleaner </td>
+                    <td>${tc}</td>
+                    <td>5 Ltr</td>
+                    <td> </td>
                 </tr>
                 <tr>
-                <td>Glass Cleaner</td>
-                <td>220</td>
-                <td>5 ltr</td>
-                <td> </td>
+                    <td>Handwash Regular</td>
+                    <td>${hr}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
                 </tr>
                 <tr>
-                <td>Cleaning Acid</td>
-                <td>110</td>
-                <td>1 ltr</td>
-                <td> </td>
+                    <td>Glass Cleaner</td>
+                    <td>${gc}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
                 </tr>
                 <tr>
-                <td>Room Freshener</td>
-                <td>450</td>
-                <td>5 ltr</td>
-                <td> </td>
+                    <td>Cleaning Acid</td>
+                    <td>${ca}</td>
+                    <td>1 ltr</td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td>Room Freshener</td>
+                    <td>${rf}</td>
+                    <td>5 ltr</td>
+                    <td> </td>
                 </tr>
             </tbody>
             </table>
@@ -119,8 +123,9 @@
                     </ul>
                 </div>
                 <br><br>
-                <div id="authSign"> </div>
+               
                 <p><strong>Authorised Signatory</strong></p>
+                <button id="subBtnId" class="btn-primary" onclick="window.print()"> <div id="authSign"> </div> </button>
             </div>
             <br>
             <p><strong>In Favour of Entity Name:</strong> Ascent Agency Pune</p>
@@ -242,11 +247,12 @@
 
 <div id="genrateQuote">
 
- <div class="page" id="">
+ <div class="page" id="genrateQuotePage">
             <div class="geometric-bg">
             </div>
 
                 <div class="header">
+                    <img id="image_logo" src="../AscentClean/products/Logo/logo.png" alt="">
                     <h2><strong style="background-color: #1abc9c;">ASCENT PUNE</strong></h2>
                     <h2> <a style="background-color: #1abc9c; color: 
                     white;">QUOTATION</a>  </h2>
@@ -293,7 +299,7 @@
                 <td> </td>
                 </tr>
                 <tr>
-                <td>Toilet Cleaner (Harpic)</td>
+                <td>Toilet Cleaner </td>
                  <td> <input id="tc" type="number"> </td>
                 <td>5 Ltr</td>
                 <td> </td>
@@ -339,7 +345,9 @@
                 <br><br>
                 <div id="authSign"> </div>
                 <p><strong>Authorised Signatory</strong></p>
-                <button id="subBtnId" class="btn-primary" onclick="submitQuote()"> save </button>
+                <button id="subBtnId" class="btn-primary" onclick="submitQuote()"> 
+                    save 
+                </button>
             </div>
             <br>
             <p><strong>In Favour of Entity Name:</strong> Ascent Agency Pune</p>
@@ -380,13 +388,16 @@ else{
         let divQ= document.getElementById("divQuote");
             let newDiv=document.createElement("div");
             newDiv.setAttribute("id",`${quoteToName}`)
-                newDiv.setAttribute("class","page")
+                newDiv.setAttribute("class","page1")
                 newDiv.innerHTML=`
        
             <div class="geometric-bg">
             </div>
 
                 <div class="header">
+                   <img id="image_logo" src="../AscentClean/products/Logo/logo.png" alt="">
+                   <h3 id="contactId"><strong style="background-color: #1abc9c;"> email: ascent.agency.pune@gmail.com <br><br> Mo: 9765475504</strong></h3>
+                   
                     <h2><strong style="background-color: #1abc9c;">ASCENT PUNE</strong></h2>
                     <h2> <a style="background-color: #1abc9c; color: 
                     white;">QUOTATION</a>  </h2>
@@ -433,7 +444,7 @@ else{
                     <td> </td>
                 </tr>
                 <tr>
-                    <td>Toilet Cleaner (Harpic)</td>
+                    <td>Toilet Cleaner </td>
                     <td>${tc}</td>
                     <td>5 Ltr</td>
                     <td> </td>
@@ -477,9 +488,9 @@ else{
                     </ul>
                 </div>
                 <br><br>
-                <div id="authSign"> </div>
+              
                 <p><strong>Authorised Signatory</strong></p>
-                <button id="subBtnId" class="btn-primary" onclick="window.print()"> Download </button>
+                <button id="subBtnId" class="btn-primary" onclick="window.print()"> <div id="authSign"> </div> </button>
             </div>
             <br>
             <p><strong>In Favour of Entity Name:</strong> Ascent Agency Pune</p>

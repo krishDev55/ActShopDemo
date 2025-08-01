@@ -316,8 +316,8 @@ allCostomer();
 
 
 
+  // let host="https://actshopmoney.netlify.app"/
   let host="https://actshopmoney.netlify.app"
-  // let host="http://127.0.0.1:5500"
   const params = new URLSearchParams(window.location.search);
   
   for (const [key, value] of params.entries()) {
@@ -332,7 +332,6 @@ allCostomer();
     }
 }
 
-let ApiHost="https://acsentagency.onrender.com";
 
 let saveBtn=()=>{
   let to =document.getElementById("costomer").value;
@@ -385,7 +384,7 @@ let saveBtn=()=>{
 
 
 
-    let api=`${ApiHost}/api/savebill`;
+    let api="http://localhost:8086/api/savebill";
      const request = new Request(api, {
                                   method: "Post",                                
                                   body: JSON.stringify(

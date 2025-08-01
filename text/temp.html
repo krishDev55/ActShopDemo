@@ -5,57 +5,92 @@
     <meta HTTP-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> User Profile Card </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <style>
-#mainDiv{
-    display: flex;
-    background-color: rgb(243, 243, 243);
-    width: 900px;
-    height: 900px;
-    margin: 10px;
-}
 
-#insDiv1{
-    background-color: rgb(27, 19, 19);
-    width: 200px;
-    height: 200px;
-  
-}
-#insDiv2{
-    background-color: rgb(65, 143, 85);
-    width: 200px;
-    height: 200px;
-    margin: 30px;
-    /* padding: auto; */
-}
-#insDiv3{
-    background-color: rgb(41, 33, 88);
-    width: 200px;
-    height: 200px;
-    /* margin: auto; */
-}
+    <style>
+        body{
+            background-color: rgb(29, 32, 34);
+        }
+        #inA{
+                 margin-left: 59px;
+            color: rgb(0, 0, 0);
+           font-size: 40px;
+            
+        }
+        .container{
+            margin-left: 290px;
+            margin-top: 100px;
+            background-color: aqua;
+            width: 650px;
+            height: 150px;
+        }
+        #inputText{
+                margin-left: 89px;
+        }
+        #btn_sub{
+            /* display: none; */
+            
+        }
     </style>
 
 </head>
 
 <body>
+    <div class="container">
 
-    <marquee id="markq" behavior="role" direction="left" onplay="">
-        <Div id ="mainDiv">
-    <div id ="insDiv1">
+    <a id="inA" >  enter your name </a> <br><br>
+    <input type="text" id="inputText"> 
+    <button id="btn_sub" >Submit </button>
 
-    </div>
-    <div id ="insDiv2">
-        
-    </div>
-    <div id ="insDiv3">
-        
-    </div>
-</Div>
-</marquee>
+    <label for="fruit">Choose a fruit:</label>
+            <select name="fruit" onclick="chack()"  id="fruit">
+                    <option value="apple">Apple</option>
+                    <option value="banana">Banana</option>
+                    <option value="mango">Mango</option>
+                    <option value="orange">Orange</option>
+            </select>
+</div>
+
+  
+
+
+<script>
+
+     let chack=()=>{
+    let m = $("#fruit").val();
+  console.log("value is : "+m);
+}
+ $(document).ready(function(){
+var stompClient=null;
+  let connect=()=>{
+        let socket= new SocketJs("/server1");
+        stompClient=Stomp.over(socket);
+        stompClient.connect({},function(frame){
+                console.log("connected "+frame)
+                alert("text");
+        })
+  }
+
+ 
+
+//   console.log("value is : "+m);
+   $(`#btn_sub`).click(function(){
+       let name= $(`#inputText`).val();
+       console.log("name is : "+name);
+       connect();
+        document.getElementById("").disable=true;
+   })
+
+ })
+
+</script>
 </body>
-<script src="script.js"></script>
 </html>
