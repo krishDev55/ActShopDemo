@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta HTTP-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> User Profile Card </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <style>
+      
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+    <a id="inA" >If You Want To Start the Chat please Click on Start Button</a> <br><br>
+    <button id="btn_sub" >Submit </button>
+      <button id="btn_rem" >remove </button>
+</div>
+
+  
+
+
+<script>
+ $(document).ready(function(){
+
+
+   $(`#btn_sub`).click(function(){
+      alert("text value")
+    //    location.href="http://localhost:8080/";
+    document.getElementById("btn_sub").setAttribute("disabled",true);
+    // $(`#btn_sub`).setAttribute("disabled",true)
+   })
+
+    $(`#btn_rem`).click(function(){
+      alert("text value remove")
+    document.getElementById("btn_sub").removeAttribute("disabled");
+   })
+
+ })
+
+</script>
+</body>
+</html>

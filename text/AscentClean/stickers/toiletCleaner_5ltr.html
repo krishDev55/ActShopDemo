@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+
+        body {
+      -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+      /* background: #ddd; */
+      background-color: #ffffff;
+      /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      width: 2480px;
+      height: 3508px;
+      
+    }
+    .main_div{
+      /* display: none; */
+      width: 2480px;
+      height: 3508px;
+      /* width: 21 cm;
+      height: 29.7 cm; */
+       background-color: #696899;    
+    }
+
+    .stickerDishwash_5L {
+       display: inline-block;
+      margin-left: 22px;
+      margin-top: 22px;
+      margin-bottom: 22px;
+      width: 1184px;
+      height: 1685px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      background: linear-gradient(to bottom, #1ea7f4, #ffffff 90%);
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      background-attachment: local;
+      background-repeat: no-repeat;
+      background-position: top left, bottom right;
+      background-size:1184px 1685px; /* change size as needed */
+      background-image: url("../products/toiletCleaner/UltraFlushCleanner.png");
+    }
+
+    .image-box {
+        height: 550px;
+        width:1150px;
+      margin-top: 665px;
+      border: 2px solid #fff;
+      padding: 4px;
+      background: #968c8c;
+       background-attachment: local;
+      background-repeat: no-repeat;
+      background-position: top left, bottom right;
+      background-size:1150px 500px; /* change size as needed */
+      background-image: url("../products/Logo/Logo_body.jpeg");
+    
+      display: flex; 
+      gap: 10px; /* spacing between divs */
+   
+    }
+    .image-box div img {
+      width: 1139px;
+      height: 480px;
+      display: block;
+    }
+
+    .moNum{
+        width: 400px;
+        margin-top: 1290px;
+        color: rgb(255, 255, 255);
+        font-size: 50px;
+        margin-left: 15px;
+        background-color: #696899;
+}
+.moNum1{
+     width: 400px;
+        margin-top: -60px;
+        background-color: #696899;
+        color: rgb(255, 255, 255);
+        font-size: 50px;
+        margin-left: 15px;
+}
+#values{
+    background-color: rgb(95, 95, 95);
+     width: 200px;
+      font-size: 50px;
+      color: rgb(255, 255, 255);
+       margin-left:810px ;
+      margin-top: -200px;
+    }
+    #rate{
+         background-color: rgb(95, 95, 95);;
+          color: rgb(255, 255, 255);
+          width: 290px;
+      font-size: 50px;
+      margin-top: -42px;
+      margin-left: 760px;
+    }
+    .footer{
+        background-color: rgb(98, 98, 145);
+        width: 650px;
+      color: white;
+      font-size: 27px;
+      margin-left: 500px;
+      margin-top: -80px;
+    }
+    #prodLogo{
+         height: 220px;
+        width:350px;
+        margin-top: 1px;
+        margin-left: 10px;
+       opacity: 0.8; /* optional */
+      mix-blend-mode: multiply;
+    }
+
+    </style>
+</head>
+<body>
+    
+  <div class="main_div" id="main_div1">
+    <div class="stickerDishwash_5L">
+      
+    <img id="prodLogo" src="../products/Logo/Logo_body.jpeg" alt="Toilet Image">
+          
+            <div class="brand">Ascent   <h3 class="moNum">  Mo : 9765475504</h3> <br>
+                                        <h3 class="moNum1">  Mo : 9763635525</h3>
+            </div>
+            <div>
+            </div>
+            <h2 id="values">  5 LTR  <h5 id="rate"> RS: 420.00</h5>  </h2> 
+                  
+            <div class="footer">
+               Recommended for: Toilet Bowl, Urinals, Wash Basins
+            </div>
+          
+      </div>          
+  
+
+     
+
+  </div>
+
+  <script>
+
+      $(document).ready(()=>{
+
+      let DishWash_5ltr=()=>{
+            let m_div=document.getElementById("main_div1");
+           
+
+            for (let index = 1; index <= 4; index++) {
+                console.log("value")
+                let sti=document.createElement("div");
+                   sti.setAttribute("class","stickerDishwash_5L")
+
+              sti.innerHTML=`
+            <img id="prodLogo" src="../products/Logo/Logo_body.jpeg" alt="Toilet Image">
+          
+            <div class="brand">Ascent   <h3 class="moNum">  Mo : 9765475504</h3> <br>
+                                        <h3 class="moNum1">  Mo : 9763635525</h3>
+            </div>
+            <div>
+            </div>
+            <h2 id="values">  5 LTR  <h5 id="rate"> RS: 420.00</h5>  </h2> 
+                  
+            <div class="footer">
+               Recommended for: Toilet Bowl, Urinals, Wash Basins
+            </div>
+              `
+               
+              m_div.append(sti);
+            }
+           
+         
+      }
+
+      DishWash_5ltr();
+
+      })
+  </script>
+</body>
+</html>

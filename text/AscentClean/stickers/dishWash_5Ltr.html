@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+
+        body {
+      -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+      /* background: #ddd; */
+      background-color: #ffffff;
+      /* display: flex; */
+      /* justify-content: center; */
+      /* align-items: center; */
+      width: 2480px;
+      height: 3508px;
+      
+    }
+    .main_div{
+      /* display: none; */
+      width: 2480px;
+      height: 3508px;
+      /* width: 21 cm;
+      height: 29.7 cm; */
+       background-color: #f09c9c;    
+    }
+
+    .stickerDishwash_5L {
+       display: inline-block;
+      margin-left: 22px;
+      margin-top: 22px;
+      margin-bottom: 22px;
+      width: 1184px;
+      height: 1685px;
+      border: 2px solid #000;
+      border-radius: 10px;
+      background: linear-gradient(to bottom, #1ea7f4, #ffffff 90%);
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      background-attachment: local;
+      background-repeat: no-repeat;
+      background-position: top left, bottom right;
+      background-size:1620px 1685px; /* change size as needed */
+      background-image: url("../products/liquidSoup/dishwashChat.png");
+    }
+
+    .image-box {
+        height: 550px;
+        width:1150px;
+      margin-top: 665px;
+      border: 2px solid #fff;
+      padding: 4px;
+      background: #968c8c;
+       background-attachment: local;
+      background-repeat: no-repeat;
+      background-position: top left, bottom right;
+      background-size:1150px 500px; /* change size as needed */
+      background-image: url("../products/Logo/Logo_body.jpeg");
+    
+      display: flex; 
+      gap: 10px; /* spacing between divs */
+   
+    }
+    .image-box div img {
+      width: 1139px;
+      height: 480px;
+      display: block;
+    }
+
+    .moNum{
+        margin-top: 540px;
+        color: rgb(255, 255, 255);
+        font-size: 50px;
+        margin-left: 15px;
+}
+.moNum1{
+        margin-top: -60px;
+        color: rgb(255, 255, 255);
+        font-size: 50px;
+        margin-left: 15px;
+}
+#values{
+      font-size: 50px;
+      color: rgb(0, 0, 0);
+       margin-left:540px ;
+      margin-top: -320px;
+    }
+    #rate{
+      font-size: 50px;
+      margin-top: -40px;
+      margin-left: 520px;
+    }
+    .subtitle{
+      margin-left: 310px;
+      font-size: 50px;
+      margin-top: -100px;
+
+    } 
+  
+    .footer{
+      color: white;
+      font-size: 27px;
+      margin-left: 500px;
+      margin-top: -60px;
+    }
+    #prodLogo{
+         height: 100px;
+        width:220px;
+        margin-top: 1px;
+        margin-left: 10px;
+       opacity: 0.8; /* optional */
+      mix-blend-mode: multiply;
+    }
+
+#lemonYellow{
+        height: 400px;
+        width:330px;
+        margin-top: 450px;
+        margin-left: 840px;
+       opacity: 0.8; /* optional */
+      mix-blend-mode: multiply;
+      transform: rotate(40deg);
+}
+    </style>
+</head>
+<body>
+    
+  <div class="main_div" id="main_div1">
+    <!-- <div class="stickerDishwash_5L">
+      
+                 <img id="prodLogo" src="../products/Logo/Logo_body.jpeg" alt="AscentId Image">
+            <h3 class="subtitle">Hygienic Cleaning Products</h3>
+       
+           <img id="lemonYellow" src="../products/liquidSoup/yellowcollorLogo.jpeg" alt="lemonYellowLogo">
+            <div class="brand">Ascent   <h3 class="moNum">  Mo : 9765475504</h3> <br>
+                                        <h3 class="moNum1">  Mo : 9763635525</h3>
+            </div>
+            <div>
+            </div>
+            <h2 id="values">  5 LTR  <h5 id="rate"> RS: 349.00</h5>  </h2> 
+                  
+            <div class="footer">
+                Recommended for: 
+            </div>
+          
+      </div>           -->
+  
+
+     
+
+  </div>
+
+  <script>
+
+      $(document).ready(()=>{
+
+      let DishWash_5ltr=()=>{
+            let m_div=document.getElementById("main_div1");
+           
+
+            for (let index = 1; index <= 4; index++) {
+                console.log("value")
+                let sti=document.createElement("div");
+                   sti.setAttribute("class","stickerDishwash_5L")
+
+              sti.innerHTML=`
+              <img id="prodLogo" src="../products/Logo/Logo_body.jpeg" alt="AscentId Image">
+            <h3 class="subtitle">Hygienic Cleaning Products</h3>
+       
+           <img id="lemonYellow" src="../products/liquidSoup/yellowcollorLogo.jpeg" alt="lemonYellowLogo">
+            <div class="brand">Ascent   <h3 class="moNum">  Mo : 9765475504</h3> <br>
+                                        <h3 class="moNum1">  Mo : 9763635525</h3>
+            </div>
+            <div>
+            </div>
+            <h2 id="values">  5 LTR  <h5 id="rate"> RS: 349.00</h5>  </h2> 
+                  
+            <div class="footer">
+                Recommended for: 
+            </div>
+              `
+               
+              m_div.append(sti);
+            }
+           
+         
+      }
+
+      DishWash_5ltr();
+
+      })
+  </script>
+</body>
+</html>
