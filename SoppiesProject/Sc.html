@@ -1,1 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Base64 JSON Decoder & Timestamp Converter</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; padding: 24px; max-width: 900px; margin: auto; color: #111; }
+    h1 { margin-top: 0; font-size: 1.6rem; }
+    textarea { width: 100%; height: 72px; font-family: monospace; padding: 10px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 6px; }
+    pre { background:#fafafa; border:1px solid #eee; padding:12px; border-radius:6px; overflow:auto; }
+    .row { display:flex; gap:12px; margin-top:12px; align-items:flex-start; }
+    .col { flex:1; }
+    label { font-weight:600; display:block; margin-bottom:6px; }
+    button { padding:8px 12px; border-radius:6px; border:1px solid #ccc; background:#fff; cursor:pointer; }
+    .ok { color: #0b6623; font-weight:700; }
+    .err { color:#b00020; font-weight:700; }
+    .small { font-size:0.9rem; color:#555; }
+  </style>
+</head>
+<body>
+  <h1>Base64 → JSON decoder & timestamp converter</h1>
+  <p class="small">Paste your Base64 string (e.g. the one you posted) into the box and click <em>Decode</em> or press Ctrl+Enter.</p>
+
+  <label for="b64">Base64 string</label>
+  <textarea id="b64">eyJ0c19rZXkiOjE3NjQ1MTMzMzEsInZlcnNpb24iOiIxLjAiLCJub2RlX2lkIjoiMzUzODIiLCJzaXRlX2lkIjoiNDYwNSJ9</textarea>
+
+  <div class="row">
+    <div class="col">
+      <button id="decodeBtn">Decode</button>
+      <button id="clearBtn">Clear</button>
+      <div style="margin-top:10px;">
+        <span id="status" class="small"></span>
+      </div>
+    </div>
+  </div>
+
+  <h2>Decoded JSON</h2>
+  <pre id="jsonOut">(decoded JSON will appear here)</pre>
+
+  <h2>Parsed fields</h2>
+  <pre id="fieldsOut">(parsed fields will appear here)</pre>
+
+  <script>
+    // helpers
+    function base64DecodeToString(b64) {
+      try {
+        // atob can throw; handle URL-safe base64 variants by normalizing
+        let s = b64.replace(/-/g, '+').replace(/_/g, '/');
+        // add padding if missing
+        while (s.length % 4 !== 0) s += '=';
+        // decode
+        return decodeURIComponent(Array.prototype.map.call(atob(s), function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+      } catch (e) {
+        // try with TextDecoder for non-ASCII bytes
+        try {
+          const bin = atob(b64.replace(/-/g,'+').replace(/_/g,'/'));
+          const bytes = new Uint8Array(bin.length);
+          for (let i=0;i<bin.length;i++) bytes[i]=bin.charCodeAt(i);
+          const dec = new TextDecoder().decode(bytes);
+          return dec;
+        } catch(e2) {
+          throw new Error('Base64 decoding failed: ' + e.message);
+        }
+      }
+    }
+
+    function formatUTC(ts) {
+      const d = new Date(ts * 1000);
+      return d.toISOString().replace('T',' ').replace('Z',' UTC');
+    }
+    function formatIST(ts) {
+      // IST = UTC+5:30
+      const d = new Date((ts + 5.5*3600) * 1000);
+      // produce local-like string
+      const pad=(n)=>String(n).padStart(2,'0');
+      return d.getUTCFullYear() + '-' +
+             pad(d.getUTCMonth()+1) + '-' +
+             pad(d.getUTCDate()) + ' ' +
+             pad(d.getUTCHours()) + ':' +
+             pad(d.getUTCMinutes()) + ':' +
+             pad(d.getUTCSeconds()) + ' IST (UTC+5:30)';
+    }
+
+    function updateFromInput() {
+      const b64 = document.getElementById('b64').value.trim();
+      const statusEl = document.getElementById('status');
+      const jsonOut = document.getElementById('jsonOut');
+      const fieldsOut = document.getElementById('fieldsOut');
+      if (!b64) {
+        statusEl.textContent = 'Paste a Base64 string above.';
+        jsonOut.textContent = '(decoded JSON will appear here)';
+        fieldsOut.textContent = '(parsed fields will appear here)';
+        return;
+      }
+
+      try {
+        const decoded = base64DecodeToString(b64);
+        statusEl.textContent = 'Decoded successfully.';
+        statusEl.className = 'small ok';
+        // try parse JSON
+        let parsed;
+        try {
+          parsed = JSON.parse(decoded);
+          jsonOut.textContent = JSON.stringify(parsed, null, 2);
+        } catch (e) {
+          jsonOut.textContent = '(decoded text is not valid JSON)\n\n' + decoded;
+          parsed = null;
+        }
+
+        // show parsed fields and timestamp conversions
+        let outLines = [];
+        if (parsed && typeof parsed === 'object') {
+          if ('ts_key' in parsed) {
+            const ts = Number(parsed.ts_key);
+            if (!Number.isNaN(ts)) {
+              outLines.push('ts_key: ' + ts);
+              outLines.push(' → UTC : ' + formatUTC(ts));
+              outLines.push(' → IST : ' + formatIST(ts));
+            } else {
+              outLines.push('ts_key present but not a number: ' + parsed.ts_key);
+            }
+          }
+          if ('version' in parsed) outLines.push('version: ' + parsed.version);
+          if ('node_id' in parsed) outLines.push('node_id: ' + parsed.node_id);
+          if ('site_id' in parsed) outLines.push('site_id: ' + parsed.site_id);
+        } else {
+          outLines.push('(no JSON object to parse fields from)');
+        }
+        fieldsOut.textContent = outLines.join('\\n');
+      } catch (err) {
+        statusEl.textContent = 'Error: ' + err.message;
+        statusEl.className = 'small err';
+        jsonOut.textContent = '';
+        fieldsOut.textContent = '';
+      }
+    }
+
+    // wire events
+    document.getElementById('decodeBtn').addEventListener('click', updateFromInput);
+    document.getElementById('clearBtn').addEventListener('click', function(){
+      document.getElementById('b64').value = '';
+      updateFromInput();
+    });
+    document.getElementById('b64').addEventListener('keydown', function(e){
+      if (e.ctrlKey && e.key === 'Enter') updateFromInput();
+    });
+
+    // run once on load
+    updateFromInput();
+  </script>
+</body>
+</html>
+
 
