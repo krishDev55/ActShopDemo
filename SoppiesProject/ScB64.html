@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generate QR with current ts_key</title>
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; max-width: 900px; margin: 28px auto; padding: 0 18px; color: #111; }
+    h1 { font-size: 1.4rem; margin-bottom: 6px; }
+    textarea { width: 100%; height: 96px; padding: 10px; box-sizing: border-box; border-radius:8px; border:1px solid #ddd; font-family: monospace; resize:vertical; }
+    pre { background:#fafafa; border:1px solid #eee; padding:12px; border-radius:8px; overflow:auto; }
+    label { font-weight:600; display:block; margin:8px 0 6px; }
+    button { padding:8px 12px; border-radius:8px; border:1px solid #bbb; background:#fff; cursor:pointer; margin-right:8px; }
+    .row { display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap; }
+    .panel { padding:12px; border-radius:8px; border:1px solid #eee; background:#fff; }
+    #qr { width:220px; height:220px; display:inline-block; }
+    .small { font-size:0.9rem; color:#555; }
+    .inline { display:inline-block; vertical-align:middle; }
+  </style>
+</head>
+<body>
+  <h1>Generate QR for Base64 JSON (with current <code>ts_key</code>)</h1>
+  <p class="small">Paste the JSON template below (or use the default). Click <strong>Update &amp; Generate</strong> to set <code>ts_key</code> to now, produce Base64, and show a QR code.</p>
+
+  <label for="jsonIn">JSON template</label>
+  <textarea id="jsonIn">{"ts_key":1764513331,"version":"1.0","node_id":"35382","site_id":"4605"}</textarea>
+
+  <div class="row">
+    <button id="genBtn">Update &amp; Generate</button>
+    <button id="copyB64Btn">Copy Base64</button>
+    <button id="downloadPngBtn">Download QR PNG</button>
+    <button id="copyJsonBtn">Copy Updated JSON</button>
+    <span id="status" class="small"></span>
+  </div>
+
+  <h2 style="margin-top:18px">Result</h2>
+  <div class="row" style="align-items:flex-start">
+    <div class="panel" style="flex:1; min-width:280px;">
+      <label>Updated JSON</label>
+      <pre id="jsonOut">(click "Update & Generate")</pre>
+
+      <label style="margin-top:8px">Base64 (standard)</label>
+      <pre id="b64Out" style="word-break:break-all">(click "Update & Generate")</pre>
+
+      <div class="small" style="margin-top:8px" id="timeInfo"></div>
+    </div>
+
+    <div class="panel" style="width:260px; text-align:center;">
+      <label>QR Code</label>
+      <div id="qr" class="inline" aria-hidden="true"></div>
+      <div style="margin-top:8px" class="small">QR preview for the Base64 string</div>
+    </div>
+  </div>
+
+  <!-- QR library from jsDelivr -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+
+  <script>
+    // robust UTF-8 aware base64 encoder
+    function base64EncodeUnicode(str) {
+      // first we escape the string using encodeURIComponent to get the UTF-8 encoding of the characters,
+      // then we convert the percent encodings into raw bytes, and finally btoa.
+      try {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+          function(match, p1) { return String.fromCharCode('0x' + p1); }));
+      } catch (e) {
+        // fallback
+        console.error('base64 encode failed', e);
+        return null;
+      }
+    }
+
+    function base64DecodeUnicode(b64) {
+      try {
+        return decodeURIComponent(Array.prototype.map.call(atob(b64), function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+      } catch (e) {
+        console.error('base64 decode failed', e);
+        return null;
+      }
+    }
+
+    function nowUnix() { return Math.floor(Date.now() / 1000); }
+
+    const genBtn = document.getElementById('genBtn');
+    const jsonIn = document.getElementById('jsonIn');
+    const jsonOut = document.getElementById('jsonOut');
+    const b64Out = document.getElementById('b64Out');
+    const qrContainer = document.getElementById('qr');
+    const status = document.getElementById('status');
+    const timeInfo = document.getElementById('timeInfo');
+    const copyB64Btn = document.getElementById('copyB64Btn');
+    const copyJsonBtn = document.getElementById('copyJsonBtn');
+    const downloadPngBtn = document.getElementById('downloadPngBtn');
+
+    let lastDataUrl = null;
+
+    function setStatus(msg, ok=true) {
+      status.textContent = msg;
+      status.style.color = ok ? '#0b6623' : '#b00020';
+    }
+
+    function generate() {
+      setStatus('Working...');
+      // read JSON template
+      let txt = jsonIn.value.trim();
+      let obj;
+      try {
+        obj = JSON.parse(txt);
+      } catch (e) {
+        setStatus('Invalid JSON template: ' + e.message, false);
+        return;
+      }
+
+      // set ts_key to current time (integer)
+      obj.ts_key = nowUnix();
+
+      // stringify compactly
+      const jsonStr = JSON.stringify(obj);
+
+      // base64 encode
+      const b64 = base64EncodeUnicode(jsonStr);
+      if (!b64) {
+        setStatus('Base64 encoding failed', false);
+        return;
+      }
+
+      // update outputs
+      jsonOut.textContent = JSON.stringify(obj, null, 2);
+      b64Out.textContent = b64;
+
+      // show human readable times
+      const utc = new Date(obj.ts_key * 1000).toISOString().replace('T',' ').replace('Z',' UTC');
+      // IST (UTC+5:30)
+      const istDate = new Date((obj.ts_key + (5.5*3600)) * 1000);
+      const pad=(n)=>String(n).padStart(2,'0');
+      const ist = istDate.getUTCFullYear() + '-' + pad(istDate.getUTCMonth()+1) + '-' + pad(istDate.getUTCDate())
+                + ' ' + pad(istDate.getUTCHours()) + ':' + pad(istDate.getUTCMinutes()) + ':' + pad(istDate.getUTCSeconds()) + ' IST (UTC+5:30)';
+      timeInfo.textContent = 'ts_key = ' + obj.ts_key + ' → UTC: ' + utc + ' | IST: ' + ist;
+
+      // generate QR into container (clears previous)
+      qrContainer.innerHTML = '';
+      // use the QRCode.toDataURL to create a PNG data URL and draw an <img>
+      QRCode.toDataURL(b64, { errorCorrectionLevel: 'M', margin: 2, width: 600 })
+        .then(url => {
+          lastDataUrl = url;
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = 'QR code';
+          img.style.maxWidth = '100%';
+          img.style.height = 'auto';
+          qrContainer.appendChild(img);
+          setStatus('Generated successfully.');
+        })
+        .catch(err => {
+          console.error(err);
+          setStatus('QR generation failed: ' + err, false);
+        });
+    }
+
+    genBtn.addEventListener('click', generate);
+
+    copyB64Btn.addEventListener('click', async () => {
+      const text = b64Out.textContent.trim();
+      if (!text) { setStatus('No Base64 to copy', false); return; }
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus('Base64 copied to clipboard.');
+      } catch (e) {
+        setStatus('Copy failed: ' + e.message, false);
+      }
+    });
+
+    copyJsonBtn.addEventListener('click', async () => {
+      const text = jsonOut.textContent.trim();
+      if (!text) { setStatus('No JSON to copy', false); return; }
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus('Updated JSON copied to clipboard.');
+      } catch (e) {
+        setStatus('Copy failed: ' + e.message, false);
+      }
+    });
+
+    downloadPngBtn.addEventListener('click', () => {
+      if (!lastDataUrl) { setStatus('Generate QR first.', false); return; }
+      const a = document.createElement('a');
+      a.href = lastDataUrl;
+      a.download = 'qr_base64.png';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setStatus('QR PNG download started.');
+    });
+
+    // generate on load for convenience
+    window.addEventListener('load', generate);
+  </script>
+</body>
+</html>
