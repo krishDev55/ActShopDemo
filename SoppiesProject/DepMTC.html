@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>QR from base64 JSON — replace ts_key with live timestamp</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;max-width:900px;margin:30px auto;padding:20px}
+    textarea{width:100%;height:110px;font-family:monospace;padding:10px}
+    .row{display:flex;gap:12px;align-items:center;margin-top:10px}
+    label{font-weight:600}
+    .panel{border:1px solid #e6e6e6;padding:12px;border-radius:8px;margin-top:12px}
+    #qr{width:256px;height:256px}
+    button{padding:8px 12px;border-radius:6px;border:1px solid #cfcfcf;background:#fafafa;cursor:pointer}
+    input[type=number]{width:84px}
+    pre{background:#f7f7f7;padding:10px;border-radius:6px;overflow:auto}
+  </style>
+</head>
+<body>
+  <h1>Generate QR — replace <code>ts_key</code> with live time</h1>
+  <p>Paste your <strong>base64-encoded JSON</strong> below (example was provided). Click <strong>Update QR</strong> to replace <code>ts_key</code> with the current Unix timestamp (seconds) and generate the QR code.</p>
+
+  <textarea id="b64input">eyJ2ZXJzaW9uIjogIjEuMCIsICJ0c19rZXkiOiAxNzY1MTc2ODcyLCAiZW1wbG95ZWVfaWQiOiAiWjQ0NzAzIiwgImVtcGxveWVlX25hbWUiOiAiVmlyYWogRGVlcGFrIEtva2FuZSIsICJzaXRlX2lkIjogIjQ2MDUifQ==</textarea>
+
+  <div class="row">
+    <button id="updateBtn">Update QR (use live timestamp)</button>
+    <input id="customTs" type="number" placeholder="custom ts_key" />
+    <button id="applyCustom">Apply custom ts_key</button>
+    <button id="decodeBtn">Decode & Show JSON</button>
+    <button id="downloadBtn">Download QR as PNG</button>
+  </div>
+
+  <div class="row" style="margin-top:10px;align-items:flex-end">
+    <label for="autorefresh">Auto-refresh every</label>
+    <input id="autorefresh" type="number" min="1" value="5"> <span>seconds</span>
+    <button id="startAuto">Start</button>
+    <button id="stopAuto" disabled>Stop</button>
+  </div>
+
+  <div class="panel">
+    <h3>Decoded JSON</h3>
+    <pre id="decoded">(decoded JSON will appear here)</pre>
+  </div>
+
+  <div class="panel" style="display:flex;gap:18px;align-items:center">
+    <div>
+      <h3>QR</h3>
+      <div id="qrcode"></div>
+    </div>
+    <div>
+      <h3>Base64 after update</h3>
+      <textarea id="b64output" style="height:110px"></textarea>
+    </div>
+  </div>
+
+  <!-- QRCode.js (small, no build step) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    const b64input = document.getElementById('b64input');
+    const decodedEl = document.getElementById('decoded');
+    const b64output = document.getElementById('b64output');
+    const updateBtn = document.getElementById('updateBtn');
+    const decodeBtn = document.getElementById('decodeBtn');
+    const applyCustom = document.getElementById('applyCustom');
+    const customTs = document.getElementById('customTs');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const qrcodeContainer = document.getElementById('qrcode');
+    const startAuto = document.getElementById('startAuto');
+    const stopAuto = document.getElementById('stopAuto');
+    const autorefresh = document.getElementById('autorefresh');
+
+    let qrWidget = null;
+    let autoTimer = null;
+
+    function tryDecodeBase64ToJson(b64) {
+      try {
+        // atob works with base64 strings (might throw if invalid)
+        const jsonStr = decodeURIComponent(escape(window.atob(b64)));
+        const obj = JSON.parse(jsonStr);
+        return {ok:true,obj,jsonStr};
+      } catch (e) {
+        // try a simpler path (some inputs are plain base64 of UTF-8)
+        try{
+          const jsonStr = window.atob(b64);
+          const obj = JSON.parse(jsonStr);
+          return {ok:true,obj,jsonStr};
+        }catch(err){
+          return {ok:false,error:err.message};
+        }
+      }
+    }
+
+    function encodeJsonToBase64(obj){
+      const jsonStr = JSON.stringify(obj);
+      // btoa works for binary-safe ASCII; encodeURIComponent handles unicode
+      const b64 = window.btoa(unescape(encodeURIComponent(jsonStr)));
+      return b64;
+    }
+
+    function renderDecoded(obj){
+      decodedEl.textContent = JSON.stringify(obj,null,2);
+    }
+
+    function generateQrFromText(text){
+      // clear previous
+      qrcodeContainer.innerHTML = '';
+      qrWidget = new QRCode(qrcodeContainer, {
+        text: text,
+        width: 256,
+        height: 256,
+        correctLevel: QRCode.CorrectLevel.H
+n      });
+    }
+
+    function updateTsGivenValue(tsValue){
+      const b64 = b64input.value.trim();
+      const dec = tryDecodeBase64ToJson(b64);
+      if(!dec.ok){
+        alert('Failed to decode base64 JSON: '+dec.error);
+        return;
+      }
+      const obj = dec.obj;
+      // replace ts_key (even if it's a string or number)
+      obj.ts_key = Number(tsValue);
+      renderDecoded(obj);
+      const newB64 = encodeJsonToBase64(obj);
+      b64output.value = newB64;
+      // for QR encode the base64 string (so QR contains the updated base64 as you asked)
+      generateQrFromText(newB64);
+    }
+
+    updateBtn.addEventListener('click',()=>{
+      const ts = Math.floor(Date.now()/1000); // unix seconds
+      updateTsGivenValue(ts);
+    });
+
+    applyCustom.addEventListener('click',()=>{
+      const v = customTs.value.trim();
+      if(!v) return alert('Enter a numeric ts value');
+      if(isNaN(Number(v))) return alert('ts_key must be a number');
+      updateTsGivenValue(Number(v));
+    });
+
+    decodeBtn.addEventListener('click',()=>{
+      const b64 = b64input.value.trim();
+      const dec = tryDecodeBase64ToJson(b64);
+      if(!dec.ok){
+        decodedEl.textContent = 'Error decoding: '+dec.error;
+        return;
+      }
+      renderDecoded(dec.obj);
+      b64output.value = b64; // show original
+      // generate QR for the original base64
+      generateQrFromText(b64);
+    });
+
+    downloadBtn.addEventListener('click',()=>{
+      // find generated image inside qrcode container
+      const img = qrcodeContainer.querySelector('img') || qrcodeContainer.querySelector('canvas');
+      if(!img) return alert('No QR generated yet. Click Update QR or Decode first.');
+
+      // If it's an <img>, its src is a dataURL; if it's a canvas, use toDataURL
+      let dataUrl = '';
+      if(img.tagName.toLowerCase() === 'img') dataUrl = img.src;
+      else dataUrl = img.toDataURL('image/png');
+
+      const a = document.createElement('a');
+      a.href = dataUrl;
+      a.download = 'qr.png';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    });
+
+    startAuto.addEventListener('click',()=>{
+      const sec = Number(autorefresh.value) || 5;
+      startAuto.disabled = true;
+      stopAuto.disabled = false;
+      // run once immediately
+      updateBtn.click();
+      autoTimer = setInterval(()=>{
+        updateBtn.click();
+      }, sec*1000);
+    });
+
+    stopAuto.addEventListener('click',()=>{
+      if(autoTimer) clearInterval(autoTimer);
+      autoTimer = null;
+      startAuto.disabled = false;
+      stopAuto.disabled = true;
+    });
+
+    // generate initial preview
+    decodeBtn.click();
+  </script>
+</body>
+</html>
