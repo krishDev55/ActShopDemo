@@ -189,7 +189,7 @@
     const ho = window.location.protocol;
     const hosting = window.location.host;
     // const host_Api = ho + "//" + hosting;
-    const host_Api = "https://acsentagency.onrender.com";
+    const host_Api = "http://localhost:8086";
 
 
     let host = "https://actshopmoney.netlify.app"
@@ -357,7 +357,8 @@
       let to = document.getElementById("costomer").value;
       let date = document.getElementById("quoteToDate").value;
       let bill = document.getElementById("bill").value;
-      let tp = document.getElementById("total").value; // for total price 
+      let tp = parseFloat(document.getElementById("total").innerText); // for total price 
+
 
       let tempUrl = `${host}/text/AscentClean/invice.html?bill=${bill}&date=${date}&to=${to}&tP=${tp}`;
 
@@ -441,4 +442,3 @@
 </body>
 
 </html>
-
