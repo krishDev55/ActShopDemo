@@ -1,133 +1,112 @@
 {
-
-    "LiquidSoup":{ 
-        "name":"Dishwash Liquid",
-        "extraAddPack":"with Fragrance of Lemon Splash Scent 5L (Pack of 1)",
-        "HSN_Code":"L1",
-        "Description": "Exceptional Cleaning Power with Distinct Fragrance The high citrus value cuts through the grease and grime.Fully soluble and has no problem with drainage.",
-        "rate":"₹279.32",
-        "rate_del":"₹379.32",
-        "img":  {
-                    "img1":"./products/liquidSoup/eco15-1.jpg"
-                 }
-      } ,
-
-       "FloorCleaner5L":{ 
-        "name":"Floor Cleaner 5L",
-        "extraAddPack":" (Pack of 1)",
-        "HSN_Code":"L1",
-        "Description": "A cleaner that makes you feel safer and the floor is protected with antibacterial.",
-        "rate":"₹445.00",
-        "rate_del":"₹579.32",
-        "img":  {
-                    "img1":"./products/flooreC/floor-cleaner1.jpg"
-                 }
-      } ,
-
-       "HandWash5L":{ 
-        "name":"Hand Wash 5L",
-        "extraAddPack":" (Pack of 1)",
-        "HSN_Code":"L1",
-        "Description": "Advanced Handwash concentrate with Sanitizer Regular and proper.Handwashing is one of the best ways to protect yourself!",
-        "rate":"₹451.50",
-        "rate_del":"₹579.32",
-        "img":  {
-                    "img1":"./products/Handwash/hadwash1.png"
-                 }
-      } 
-      ,
-
-       "GlassCleaner":{ 
-        "name":"Glass Cleaner",
-        "extraAddPack":"Ready To Use 5L Pack",
-        "HSN_Code":"L1",
-        "Description": "An anti-dirt formula for effective glass cleaning Grease cutting microsystem helps cut through oils and grimes. Multi-surface action, Child and pet-friendly Mild fragrance, No trace marks",
-        "rate":"₹179.66",
-        "rate_del":"₹339.32",
-        "img":  {
-                    "img1":"./products/glassCleaner/glassCleaner.jpg"
-                 }
-      } ,
-
-      
-       "ToiletBowlCleaner":{ 
-        "name":"Toilet Bowl Cleaner",
-        "extraAddPack":"3X Cleaning Power . 5L Pack",
-        "HSN_Code":"L1",
-        "Description": " Heavy duty cleaner for toilet bowl and urinal. Spray the toilet cleaner on the WC or urinal and leave for some time, scrub with toilet brush and flush. Dilution: 30-50ml/Ltr for mechanised surface cleaning, else direct use with moist scrubber for equipment cleaning",
-        "rate":"₹377.74",
-        "rate_del":"₹499.00",
-        "img":  {
-                    "img1":"./products/toiletCleaner/toiletCleaner.jpg"
-                 }
-      } ,
-
-      "GreenPhenyl":{ 
-        "name":"Green Phenyl",
-        "extraAddPack":" 5L Pack",
-        "HSN_Code":"L1",
-        "Description": " Just add 20ML of  Cocentrated Phenyl  Cleaner to a bucket of water and get a sparkling clean floor.",
-        "rate":"₹950.89",
-        "rate_del":"₹1099.00",
-        "img":  {
-                    "img1":"./products/phynel/greenPhenyl.png"
-                 }
-      } ,
-
-      "ColourPhenyl":{ 
-        "name":"Colour Phenyl",
-        "extraAddPack":"5L Pack",
-        "HSN_Code":"L1",
-        "Description": "﻿High quality cleaning liquid with good non-harmful herbal formulation. Leaves a pleasant fragrance after cleaning. Available in 4different formulations",
-        "rate":"₹349.00",
-        "rate_del":"₹499.32",
-        "img":  {
-                    "img1":"./products/phynel/colourPhynel.jpg"
-                 }
-      } 
-      ,
-
-       "WhitePhenyl":{ 
-        "name":"White Phenyl",
-        "extraAddPack":"5L Pack",
-        "HSN_Code":"L7",
-        "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
-        "rate":"₹250.00",
-        "rate_del":"₹320.00",
-        "img":  {
-                    "img1":"./products/phynel/whitePhynel1.png"
-                 }
-      } ,
-
-       "Acid":{ 
-        "name":"Acid ",
-        "extraAddPack":"5L Pack",
-        "HSN_Code":"L7",
-        "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
-        "rate":"₹250.00",
-        "rate_del":"₹330.00",
-        "img":  {
-                    "img1":""
-                 }
-      } ,
-       
- "GarbageBags":{ 
-        "name":"Garbage Bag",
-        "extraAddPack":"5L Pack",
-        "HSN_Code":"L7",
-        "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
-        "rate":"₹250.00",
-        "rate_del":"₹320.00",
-        "img":  {
-                    "img1":""
-                 }
-      } 
-
-
-
-
-
-
-
-
+   "LiquidSoup": {
+      "name": "Dishwash Liquid",
+      "extraAddPack": "with Fragrance of Lemon Splash Scent 5L (Pack of 1)",
+      "HSN_Code": "L1",
+      "Description": "Exceptional Cleaning Power with Distinct Fragrance The high citrus value cuts through the grease and grime.Fully soluble and has no problem with drainage.",
+      "rate": "₹279.32",
+      "rate_del": "₹379.32",
+      "img": {
+         "img1": "./products/liquidSoup/eco15-1.jpg"
+      }
+   },
+   "FloorCleaner": {
+      "name": "Floor Cleaner 5L",
+      "extraAddPack": " (Pack of 1)",
+      "HSN_Code": "L1",
+      "Description": "A cleaner that makes you feel safer and the floor is protected with antibacterial.",
+      "rate": "₹445.00",
+      "rate_del": "₹579.32",
+      "img": {
+         "img1": "./products/flooreC/floor-cleaner1.jpg"
+      }
+   },
+   "HandWash": {
+      "name": "Hand Wash 5L",
+      "extraAddPack": " (Pack of 1)",
+      "HSN_Code": "L1",
+      "Description": "Advanced Handwash concentrate with Sanitizer Regular and proper.Handwashing is one of the best ways to protect yourself!",
+      "rate": "₹451.50",
+      "rate_del": "₹579.32",
+      "img": {
+         "img1": "./products/Handwash/hadwash1.png"
+      }
+   },
+   "GlassCleaner": {
+      "name": "Glass Cleaner",
+      "extraAddPack": "Ready To Use 5L Pack",
+      "HSN_Code": "L1",
+      "Description": "An anti-dirt formula for effective glass cleaning Grease cutting microsystem helps cut through oils and grimes. Multi-surface action, Child and pet-friendly Mild fragrance, No trace marks",
+      "rate": "₹179.66",
+      "rate_del": "₹339.32",
+      "img": {
+         "img1": "./products/glassCleaner/glassCleaner.jpg"
+      }
+   },
+   "ToiletCleaner": {
+      "name": "Toilet Bowl Cleaner",
+      "extraAddPack": "3X Cleaning Power . 5L Pack",
+      "HSN_Code": "L1",
+      "Description": " Heavy duty cleaner for toilet bowl and urinal. Spray the toilet cleaner on the WC or urinal and leave for some time, scrub with toilet brush and flush. Dilution: 30-50ml/Ltr for mechanised surface cleaning, else direct use with moist scrubber for equipment cleaning",
+      "rate": "₹377.74",
+      "rate_del": "₹499.00",
+      "img": {
+         "img1": "./products/toiletCleaner/toiletCleaner.jpg"
+      }
+   },
+   "GreenPhenyl": {
+      "name": "Green Phenyl",
+      "extraAddPack": " 5L Pack",
+      "HSN_Code": "L1",
+      "Description": " Just add 20ML of  Cocentrated Phenyl  Cleaner to a bucket of water and get a sparkling clean floor.",
+      "rate": "₹950.89",
+      "rate_del": "₹1099.00",
+      "img": {
+         "img1": "./products/phynel/greenPhenyl.png"
+      }
+   },
+   "ColourPhenyl": {
+      "name": "Colour Phenyl",
+      "extraAddPack": "5L Pack",
+      "HSN_Code": "L1",
+      "Description": "﻿High quality cleaning liquid with good non-harmful herbal formulation. Leaves a pleasant fragrance after cleaning. Available in 4different formulations",
+      "rate": "₹349.00",
+      "rate_del": "₹499.32",
+      "img": {
+         "img1": "./products/phynel/colourPhynel.jpg"
+      }
+   },
+   "WhitePhenyl": {
+      "name": "White Phenyl",
+      "extraAddPack": "5L Pack",
+      "HSN_Code": "L7",
+      "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
+      "rate": "₹250.00",
+      "rate_del": "₹320.00",
+      "img": {
+         "img1": "./products/phynel/whitePhynel1.png"
+      }
+   },
+   "Acid": {
+      "name": "Acid ",
+      "extraAddPack": "5L Pack",
+      "HSN_Code": "L7",
+      "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
+      "rate": "₹250.00",
+      "rate_del": "₹330.00",
+      "img": {
+         "img1": ""
+      }
+   },
+   "GarbageBags": {
+      "name": "Garbage Bag",
+      "extraAddPack": "5L Pack",
+      "HSN_Code": "L7",
+      "Description": "A finely dispersed homogeneous white to off-white natural pine oil based disinfectant for the general cleaning of floors, toilets, drains etc.",
+      "rate": "₹250.00",
+      "rate_del": "₹320.00",
+      "img": {
+         "img1": ""
+      }
+   }
 }
